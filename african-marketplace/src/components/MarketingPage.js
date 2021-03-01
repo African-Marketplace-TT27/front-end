@@ -51,14 +51,14 @@ useEffect(()=>{
                 <SellerItem key={sellerItems.id} sellerItems={sellerItems}></SellerItem>
             </ItemsContainer>
             <Footer>
-                <div className="footerLogo">
+                <NavLogo className="footerLogo">
                     <img src={logoWhite} alt="Sauti Logo"/>
-                </div>
-                <div className="footerLinks">
-                <Link to='/about'>About</Link>
-                <Link to='/register'>Sell</Link>
-                <Link to='/help'>Help</Link>
-                </div>
+                </NavLogo>
+                <FooterLinks className="footerLinks">
+                <div><Link to='/about'>About</Link></div>
+                <div><Link to='/register'>Sell</Link></div>
+                <div><Link to='/help'>Help</Link></div>
+                </FooterLinks>
 
             </Footer>
         </div>
@@ -111,6 +111,7 @@ const HeroImg = styled.div`
 const ItemsContainer= styled.div`
     background: #E5E5E5;
     padding: 2%;
+    padding-top:5%;
 
     h2{
         color: #C87D55;
@@ -118,6 +119,19 @@ const ItemsContainer= styled.div`
     `
 
     //Footer
-    const Footer = styled.div`
-        background: #AD7C82;
+const Footer = styled.div`
+    background: #AD7C82;
+    display:flex;
+    height: 50px;
+`
+const FooterLinks = styled.div`
+    width: 85%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 1%;
+        div{
+            margin: 0% 1.5%;
+        }
     `
+

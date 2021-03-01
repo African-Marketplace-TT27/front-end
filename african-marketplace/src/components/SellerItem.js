@@ -49,6 +49,7 @@ width: 22%;
 margin:2% .5%;
 box-shadow: 0px 30px 60px -40px #893A00;
 border-radius: 5px;
+background: #FFFFFF;
 
     img{
         display:inline-block;
