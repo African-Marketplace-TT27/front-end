@@ -11,6 +11,7 @@ import "bootstrap/dist/css/bootstrap.css";
 
 // Import Components
 import AddProduct from './components/AddProduct'
+import SellerDashboard from "./components/SellerDashboard";
 
 
 function App() {
@@ -20,9 +21,8 @@ function App() {
         <Switch>
           <Route path="/Login" component={Login}/>
           <Route path="/Signup" component={Signup}/>
-          
+          <Route path="/SellerDashboard" component={SellerDashboard} />
         </Switch>
-        <AddProduct />
 
     </div>
   );
