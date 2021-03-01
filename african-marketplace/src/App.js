@@ -1,15 +1,24 @@
-import React from 'react';
+import React from "react";
+import {Route, Switch} from 'react-router-dom'
+
+// Import components
+import Login from "./components/Login";
+import Signup from "./components/Signup";
 
 // Styling
-import './App.css';
+import "./App.css";
 import "bootstrap/dist/css/bootstrap.css";
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>African Marketplace</h1>
-      </header>
+ 
+        <Switch>
+          <Route path="/Login" component={Login}/>
+          <Route path="/Signup" component={Signup}/>
+        </Switch>
+      
     </div>
   );
 }
