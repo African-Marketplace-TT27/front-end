@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
+import styled from 'styled-components'
 
 //images
 import logo from '../images/Sauti.png'
@@ -25,23 +26,23 @@ useEffect(()=>{
 
     return (
         <div>
-            <header>
-                <div className="logo">
+            <Header>
+                <NavLogo className="logo">
                     <img src={logo} alt="Sauti Logo"></img>
-                </div>
-                <div className="navBar">
+                </NavLogo>
+                <NavBar className="navBar">
                     <div className="searchBar">
-                        <h6> Search Bar </h6>
+                    <h6> Search Bar </h6>
                     </div>
                     <div className="loginLink">
                         <img width="65px" src={cart} alt="shopping cart icon"/>
                         <Link to='/login'>Login</Link>
                     </div>
-                </div>
-            </header>
-            <div className="heroImg">
+                </NavBar>
+            </Header>
+            <HeroImg className="heroImg">
                 <img src={heroImg} alt="woman grocery shopping"/>
-            </div>
+            </HeroImg>
             <div className="availableItems">
                 <div>
                     <h2>Available Items</h2>
@@ -60,7 +61,7 @@ useEffect(()=>{
                                     <p>{item.prodDesc ? item.prodDesc : "Blah Blah Blah Blah Blah" }</p>
                                 </div>
                                 <div>
-                                    
+
                                     <p>{item.country ? item.country : "Nairobi, Kenya"}</p>
                                 </div>
                             </div>
@@ -82,3 +83,45 @@ useEffect(()=>{
         </div>
     )
 }
+
+// NAVIGATION BAR STYLES
+const Header = styled.header`
+    border: 3px solid black;
+    width: 100%;
+    display:flex;
+    `
+const NavLogo = styled.div`
+    border: 3px solid green;
+    width: 15%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    `
+
+const NavBar = styled.div`
+border: 3px solid orange;
+display:flex;
+justify-content: flex-end;
+width:85%;
+
+    .searchBar{
+        border: 2px dotted black;
+        width: 30%;
+        display:flex;
+        align-items:center;
+        justify-content: center;
+    }
+    
+    .loginLink{
+        border: 2px dotted turquoise;
+        width: 20%;
+    }
+`
+
+//HERO IMAGE STYLES
+const HeroImg = styled.div`
+    img{
+        border: 2px solid magenta;
+        width: 100%;
+    }
+`
