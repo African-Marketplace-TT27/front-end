@@ -9,6 +9,9 @@ import Signup from "./components/Signup";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.css";
 
+// Import Components
+import AddProduct from './components/AddProduct'
+
 
 function App() {
   return (
@@ -17,8 +20,10 @@ function App() {
         <Switch>
           <Route path="/Login" component={Login}/>
           <Route path="/Signup" component={Signup}/>
+          
         </Switch>
-      
+        <AddProduct />
+
     </div>
   );
 }
