@@ -16,6 +16,10 @@ import App from './App';
 // styling
 import './index.css';
 
+//icons
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCoffee } from '@fortawesome/free-solid-svg-icons'
+
 // Redux Store
 const store = (createStore(reducer, applyMiddleware(thunk, logger)))
 

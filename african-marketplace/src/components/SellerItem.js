@@ -5,8 +5,12 @@ import styled from 'styled-components'
 import sellerImg from '../images/Rectangle 11.png'
 import locIcon from '../images/LocIcon.png'
 
+
+
 export default function SellerItem(props) {
     const {sellerItems} = props
+    sellerItems.sort((a,b)=> 0.5-Math.random());
+    console.log('randomized', sellerItems)
 
     return (
         <ItemContainer>
@@ -23,6 +27,7 @@ export default function SellerItem(props) {
                                     <p>{item.prodDesc ? item.prodDesc : "Blah Blah Blah Blah Blah" }</p>
                                 </div>
                                 <Country>
+                                    
                                     <img src={locIcon} alt="Location Icon"/>
                                     <p>{item.country ? item.country : "Nairobi, Kenya"}</p>
                                 </Country>
