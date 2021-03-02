@@ -5,7 +5,7 @@ import styled from 'styled-components'
 
 
 const SignUp = styled.div`
-width: 60%;
+width: 40%;
 display:flex;
 flex-direction:column;
 justify-content:center;
@@ -18,6 +18,13 @@ const WhiteForm = styled.form`
   padding: ${props => props.theme.formPadding};
   box-shadow: ${props => props.theme.formBoxShadow};
   border-radius: ${props => props.theme.formBorderRadius};
+
+  p {
+    background-color: white;
+    text-align: right;
+    color: #C87D55;
+    font-size: 15px;
+  }
 `
 
 const FormInput = styled.input`
@@ -46,6 +53,30 @@ const FormButton = styled.button`
   width: ${props => props.theme.buttonWidth};
   margin-bottom: 20px;
 `
+const TermsAgree = styled.input` 
+  width: 18px;
+  height: 18px;
+  border: 2px solid #BAB7AE !important;
+  border-radius: 2px;
+  margin-right: 8px;
+`
+const TermsAgreeLabel = styled.label` 
+  text-align: left;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 18px;
+  text-align: left;
+  margin-bottom: 39px;
+  color: #C87D55;
+`
+
+const Terms = styled.div`
+  align-self: flex-start;
+  background-color: white;
+  display: flex;
+  justify-content: flex-start;
+`
+
 
 const Signup = () => {
   return (
@@ -59,8 +90,10 @@ const Signup = () => {
           <FormInput  as="select">
             <option>Country</option>
           </FormInput>
-          <Form.Check type="checkbox" label="Agree to Terms and Condtitions" />
-          
+          <Terms>
+            <TermsAgree type="checkbox" />
+            <TermsAgreeLabel>Agree to Terms and Conditions</TermsAgreeLabel>
+          </Terms>
           <FormButton type="submit">
             Sign Up
           </FormButton>

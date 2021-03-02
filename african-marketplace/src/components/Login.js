@@ -5,7 +5,7 @@ import Logo from '../images/Sauti..svg'
 
 
 const LoginContainer = styled.div`
-width: 60%;
+width: 40%;
 display:flex;
 flex-direction:column;
 justify-content:center;
@@ -19,6 +19,13 @@ const WhiteForm = styled.form`
   padding: ${props => props.theme.formPadding};
   box-shadow: ${props => props.theme.formBoxShadow};
   border-radius: ${props => props.theme.formBorderRadius};
+
+  p {
+    background-color: white;
+    text-align: right;
+    color: #C87D55;
+    font-size: 15px;
+  }
 `
 
 const FormInput = styled.input`
