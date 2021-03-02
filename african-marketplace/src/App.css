@@ -107,6 +107,10 @@ tr img {
  
 }
 
- &:focus {
-    border: none;
-  }
+.form-logo {
+  margin-bottom: 20px;
+}
+
+.login-form {
+  background-color: white;
+}
