@@ -2,6 +2,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Raleway', sans-serif;
+  background: #FFFBF6;
 }
 
 .App {
@@ -12,7 +14,5 @@
   width: 100%;
 }
 
-.border-bottom {
-  border-bottom: 2px solid #F6BC8C;
-  border-top: none;
-}
+
+
