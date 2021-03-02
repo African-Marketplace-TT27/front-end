@@ -4,11 +4,20 @@ import { BrowserRouter as Router } from "react-router-dom";
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import thunk from "redux-thunk";
+import { createStore, appleMiddleware } from "redux";
+import logger from 'redux-logger';
+import { Provider } from 'react-redux';
+
+const store = createStore(reducer, appleMiddleware(thunk))
+
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
+      <Provider store = {store}>
       <App />
+      </Provider>
     </Router>
   </React.StrictMode>,
   document.getElementById('root')

@@ -7,3 +7,12 @@
 .App {
   text-align: center;
 }
+
+.add-product-form {
+  width: 100%;
+}
+
+.border-bottom {
+  border-bottom: 2px solid #F6BC8C;
+  border-top: none;
+}
