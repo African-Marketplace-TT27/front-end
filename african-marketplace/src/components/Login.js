@@ -5,7 +5,7 @@ import Logo from '../images/Sauti..svg'
 
 
 const LoginContainer = styled.div`
-width: 60%;
+width: 40%;
 display:flex;
 flex-direction:column;
 justify-content:center;
