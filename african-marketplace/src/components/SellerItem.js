@@ -11,7 +11,7 @@ export default function SellerItem(props) {
     return (
         <ItemContainer>
             {sellerItems.map((item)=>{
-                        return <Item className="sellerItem">
+                        return <Item className="sellerItem" >
                             {/* //Change the image below to be the api.image */}
                             <img src={sellerImg} alt="Bell Peppers" />
                             <div className="sellerItemDetails">
