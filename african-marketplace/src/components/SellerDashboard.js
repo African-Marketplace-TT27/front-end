@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import AddProduct from './AddProduct'
 import SellerProductCard from './SellerProductCard'
+import Navigation from './Navigation'
 
 // dummy data
 const products = [
@@ -16,6 +17,7 @@ const SellerDashboard = () => {
     return (
 
         <div>
+            <Navigation />
             <div>
                 <h1>My Products</h1>
                 <div>Profile Image Placeholder</div>

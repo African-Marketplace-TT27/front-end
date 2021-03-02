@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "../assets/Sauti..svg";
+import Logo from "../images/Sauti..svg";
 import { Form, Button } from "react-bootstrap";
 import styled from 'styled-components'
 
@@ -13,17 +13,7 @@ align-items:center;
 height:100vh;
 margin:0 auto
 
-
-
-
-
-
-
-
 `
-
-
-
 const Signup = () => {
   return (
     <SignUp><br>

@@ -1,15 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from "react-router-dom";
-import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+
+// Redux and middleware
 import thunk from "redux-thunk";
-import { createStore, appleMiddleware } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import logger from 'redux-logger';
 import { Provider } from 'react-redux';
 
-const store = createStore(reducer, appleMiddleware(thunk))
+// components
+import reducer from './reducers';
+import App from './App';
+
+// styling
+import './index.css';
+
+// Redux Store
+const store = (createStore(reducer, applyMiddleware(thunk, logger)))
 
 
 ReactDOM.render(
