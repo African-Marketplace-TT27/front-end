@@ -1,7 +1,7 @@
 import React from "react";
 import {Form, Button} from 'react-bootstrap';
 import styled from 'styled-components';
-import Logo from '../assets/Sauti..svg'
+import Logo from '../images/Sauti..svg'
 
 const LoginContainer = styled.div`
 width: 60%;
@@ -11,26 +11,7 @@ justify-content:center;
 align-items:center;
 height:100vh;
 margin:0 auto;
-
-
-
-
-
-
-
-
-
-
-
-
-
 `
-
-
-
-
-
-
 const Login = () => {
   return (
     <LoginContainer>
