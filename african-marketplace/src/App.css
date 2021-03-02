@@ -34,15 +34,16 @@
 
 .navigation {
   background-color: white;
-  width: 270px;
+  
 }
 
 .seller-dashboard {
   display: flex;
+  flex-direction: column;
 }
 
 .products-list {
-  width: 100%;
+  width: 100vw;
   padding: 36px 30px 30px;
 }
 
@@ -88,6 +89,7 @@ tr img {
 .product-description {
   width: 255px;
   padding-right: 30px;
+  display: none;
 }
 
 .nav-logo {
@@ -113,4 +115,35 @@ tr img {
 
 .login-form {
   background-color: white;
+}
+
+.modal {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.form-row {
+  background-color: white;
+}
+
+.form-group {
+  background-color: white;
+  margin-bottom: 0px !important;
+}
+
+.modal-content {
+  border: none !important;
+  background-color: white !important;
+}
+
+.add-product-form {
+  border-radius: 5px;
+}
+
+@media (min-width: 1024px) {
+  .seller-dashboard {
+    flex-direction: row;
+  }
+  .product-description {
+    display: table-cell;
+  }
 }

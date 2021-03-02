@@ -15,7 +15,76 @@ const SmallButton = styled.button`
     border: ${props => props.theme.smButtonBorder};
     padding: ${props => props.theme.smButtonPadding};
 `
+const FormHeader = styled.div`
+    color: ${props => props.theme.secondaryHeaderColor};
+    font-weight: ${props => props.theme.secondaryFontWeight};
+    font-size: ${props => props.theme.secondaryFontSize};
+    line-height: ${props => props.theme.secondaryLineHeight};
+    text-align: ${props => props.theme.secondaryTextAlign};
+    background-color: white;
+`
 
+const FormHeaderDiv = styled.div`
+    display: flex;
+    justify-content: space-between;
+    margin: 30px 0px 20px;
+    padding: 0px 40px 0px;
+    background-color: white;
+
+    h4 {
+        background-color: white;
+    }
+`
+
+const WhiteForm = styled.form`
+  background-color: ${props => props.theme.formBgColor};
+  padding: 0px 40px 20px;
+  box-shadow: ${props => props.theme.formBoxShadow};
+  border-radius: ${props => props.theme.formBorderRadius};
+  border-radius: 5px;
+  
+  p {
+    background-color: white;
+    text-align: right;
+    color: #C87D55;
+    font-size: 15px;
+  }
+`
+
+const FormInput = styled.input`
+  background-color: ${props => props.theme.inputBackgroundColor};
+  height: ${props => props.theme.inputHeight};
+  border: ${props => props.theme.inputBorder};
+  border-radius: ${props => props.theme.inputBorderRadius};
+  font-weight: ${props => props.theme.inputFontWeight};
+  font-size: ${props => props.theme.inputFontSize};
+  line-height: ${props => props.theme.inputLineHeight};
+  color: ${props => props.theme.inputColor};
+  width: ${props => props.theme.inputWidth};
+  padding: ${props => props.theme.inputPadding};
+  margin-bottom: ${props => props.theme.inputMarginBottom};
+`
+const FormButton = styled.button`
+  color: ${props => props.theme.buttonColor};
+  background-color: ${props => props.theme.buttonBgColor};
+  height: ${props => props.theme.buttonHeight};
+  border-radius: ${props => props.theme.buttonBorderRadius};
+  font-weight: ${props => props.theme.buttonFontWeight};
+  font-size: ${props => props.theme.butotnFontSize};
+  line-height: ${props => props.theme.buttonLineHeight};
+  text-align: ${props => props.theme.buttonTextAlign};
+  border: ${props => props.theme.buttonBorder};
+  width: ${props => props.theme.buttonWidth};
+  margin-bottom: 20px;
+  `
+
+const SuggestedPrice = styled.div`
+    background-color: white;
+    font-size: 16px;
+    color: #868662;
+    line-height: 19px;
+    margin-bottom: 10px;
+`
 
 const AddProduct = () => {
     const [show, setShow] = useState(false);
@@ -35,78 +104,70 @@ const AddProduct = () => {
                 backdrop="static"
                 keyboard={false}
             >
-                <Modal.Header>
-                    <Modal.Title>Add Product Details</Modal.Title>
+                <FormHeaderDiv>
+                    <FormHeader>Add Product Details</FormHeader>
                     <h4 onClick={handleClose}>X</h4>
-                </Modal.Header>
-                <Modal.Body>
-                    <Form className = "add-product-form">
-                        <Form.Group controlId="productName">
-                            <Form.Control placeholder="Product Name" />
-                        </Form.Group>
-
-                        <Form.Group controlId="productDescription">
-                            <Form.Control placeholder="Description" />
-                        </Form.Group>
-
+                </FormHeaderDiv>
+    
+                    <WhiteForm className = "add-product-form">
+                        <FormInput placeholder="Product Name" />
+                        <FormInput placeholder="Description" />
                         <Form.Row>
                             <Form.Group as={Col} controlId="productCategory">
-                                <Form.Control as="select" defaultValue="">
+                                <FormInput as="select" defaultValue="">
                                     <option>Category</option>
                                     <option>Option 1</option>
                                     <option>Option 2</option>
                                     <option>Option 3</option>
-                                </Form.Control>
+                                </FormInput>
                             </Form.Group>
                             <Form.Group as={Col} controlId="productType">
-                                <Form.Control as="select" defaultValue="">
+                                <FormInput as="select" defaultValue="">
                                     <option>Type</option>
                                     <option>Option 1</option>
                                     <option>Option 2</option>
                                     <option>Option 3</option>
-                                </Form.Control>
+                                </FormInput>
                             </Form.Group>
                         </Form.Row>
 
                         <Form.Group controlId="productCountry">
-                            <Form.Control as="select">
+                            <FormInput as="select">
                                 <option>Country of Origin</option>
                                 <option>Option 1</option>
                                 <option>Option 2</option>
                                 <option>Option 3</option>
-                            </Form.Control>
+                            </FormInput>
                         </Form.Group>
 
                         <Form.Row>
                             <Form.Group as={Col} controlId="productPrice">
-                                <Form.Control placeholder="Price" />
+                                <FormInput placeholder="Price" />
                             </Form.Group>
                             <Form.Group as={Col} controlId="productUnitOfMeasure">
-                                <Form.Control as="select" defaultValue="">
-                                    <option>Unit of Measure</option>
+                                <FormInput as="select" defaultValue="">
+                                    <option>Unit</option>
                                     <option>Option 1</option>
                                     <option>Option 2</option>
                                     <option>Option 3</option>
-                                </Form.Control>
+                                </FormInput>
                             </Form.Group>
                             <Form.Group controlId="productInventory">
-                                <Form.Control placeholder="Inventory" type='number' step="0.1" min='0'/>
+                                <FormInput placeholder="Inventory" type='number' step="0.1" min='0'/>
                             </Form.Group>
                         </Form.Row>
 
-                        <div>Suggested Market Price: $PRICE</div>
+                        <SuggestedPrice>Suggested Market Price: $PRICE</SuggestedPrice>
 
-                        <Form.File 
-                            id="custom-file"
-                            label="Upload an Image"
-                            custom
+                        <FormInput
+                            type="file"
                         />
 
-                        <Button variant="primary" type="submit" onClick={handleClose}>
+                        <FormButton type="submit" onClick={handleClose}>
                             Add New Product
-                        </Button>
-                    </Form>
-                </Modal.Body>
+                        </FormButton>
+                    </WhiteForm>
+      
             </Modal>
 
 
