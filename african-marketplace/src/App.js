@@ -9,19 +9,20 @@ import Signup from "./components/Signup";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.css";
 
-// Import Components
+//Components
+import MarketingPage from './components/MarketingPage'
 import AddProduct from './components/AddProduct'
 import SellerDashboard from "./components/SellerDashboard";
-
 
 function App() {
   return (
     <div className="App">
- 
+
         <Switch>
           <Route path="/Login" component={Login}/>
           <Route path="/Signup" component={Signup}/>
           <Route path="/SellerDashboard" component={SellerDashboard} />
+          <Route path="/" component={MarketingPage} />
         </Switch>
 
     </div>
