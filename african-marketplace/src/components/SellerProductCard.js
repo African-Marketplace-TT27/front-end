@@ -4,7 +4,7 @@ const SellerProductCard = (props) => {
    const { product, key } = props
     
    return (
-        <tr id={key} className="border-bottom">
+        <tr id={key} className="table-bottom-border">
             <td><img src={product.image} alt={product.prod_name} width='200px'/></td>
             <td>{product.prod_name}</td>
             <td>{product.prod_Desc}</td>

@@ -9,7 +9,8 @@ const AddProduct = () => {
 
     return (
         <div>
-            <Button variant='primary' onClick={handleShow}>
+
+            <Button  onClick={handleShow}>
                 Add Product
             </Button>
 
