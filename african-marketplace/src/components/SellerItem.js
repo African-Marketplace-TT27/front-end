@@ -21,7 +21,7 @@ export default function SellerItem(props) {
                             <div className="sellerItemDetails">
                                 <NameNpriceCont className="nameNprice">
                                     <h6>{item.prodName ? item.prodName : "Bell Peppers"}</h6>
-                                    <h6>{item.price ? item.price : "$99.99"}</h6>
+                                    <h6 className="price">{item.price ? item.price : "$99.99"}</h6>
                                 </NameNpriceCont>
                                 <div>
                                     <p>{item.prodDesc ? item.prodDesc : "Blah Blah Blah Blah Blah" }</p>
@@ -29,7 +29,7 @@ export default function SellerItem(props) {
                                 <Country>
                                     
                                     <img src={locIcon} alt="Location Icon"/>
-                                    <p>{item.country ? item.country : "Nairobi, Kenya"}</p>
+                                    <h6>{item.country ? item.country : "Nairobi, Kenya"}</h6>
                                 </Country>
                             </div>
                         </Item>
@@ -55,20 +55,29 @@ margin:2% .5%;
 box-shadow: 0px 30px 60px -40px #893A00;
 border-radius: 5px;
 background: #FFFFFF;
+color: #868662;
 
     img{
         display:inline-block;
         width: 100%;
     }
+
+    p{
+        font-size: .9rem;
+    }
 `
 //Name and Price Div
 const NameNpriceCont = styled.div`
     /* border: 1px solid orange; */
-    color: red;
+    color: #AD7C82;
     display: flex;
     justify-content: space-between;
     margin: 1%;
     align-items:center;
+    
+    .price{
+        color: #868662;
+    }
     
 `
 
@@ -77,6 +86,8 @@ const Country = styled.div`
     /* border: 1px solid yellowgreen; */
     display: flex;
     width: 100%;
+    color: #FE861C;
+    font-weight: bold;
 
     img{
         width: 13%;

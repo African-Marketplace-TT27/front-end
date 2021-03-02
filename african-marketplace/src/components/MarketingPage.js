@@ -37,9 +37,9 @@ useEffect(()=>{
                     <div className="searchBar">
                     <h6> Search Bar </h6>
                     </div>
-                    <div className="loginLink">
+                    <div className="loginLinkCont">
                         <img width="65px" src={cart} alt="shopping cart icon"/>
-                        <Link to='/login'>Login</Link>
+                        <Link className="loginLink" to='/login'>Login</Link>
                     </div>
                 </NavBar>
             </Header>
@@ -55,9 +55,9 @@ useEffect(()=>{
                     <img src={logoWhite} alt="Sauti Logo"/>
                 </NavLogo>
                 <FooterLinks className="footerLinks">
-                <div><Link to='/about'>About</Link></div>
-                <div><Link to='/register'>Sell</Link></div>
-                <div><Link to='/help'>Help</Link></div>
+                <div><Link className="link-footer" to='/about'>About</Link></div>
+                <div><Link className="link-footer" to='/register'>Sell</Link></div>
+                <div><Link className="link-footer" to='/help'>Help</Link></div>
                 </FooterLinks>
 
             </Footer>
@@ -93,9 +93,13 @@ width:85%;
         justify-content: center;
     }
     
-    .loginLink{
+    .loginLinkCont{
         /* border: 2px dotted turquoise; */
         width: 20%;
+    }
+    .loginLink{
+        text-decoration: none;
+        color: #868662;
     }
 `
 
@@ -109,18 +113,21 @@ const HeroImg = styled.div`
 
 // Item Container
 const ItemsContainer= styled.div`
-    background: #E5E5E5;
+    background: #FFFBF6;
     padding: 2%;
     padding-top:5%;
 
     h2{
         color: #C87D55;
+        font-weight: bolder;
     }
     `
 
     //Footer
 const Footer = styled.div`
+    border: 1px solid green;
     background: #AD7C82;
+;
     display:flex;
     height: 50px;
 `
@@ -132,6 +139,11 @@ const FooterLinks = styled.div`
     padding-right: 1%;
         div{
             margin: 0% 1.5%;
+        }
+
+        .link-footer{
+            text-decoration: none;
+            color: white;
         }
     `
 
