@@ -10,6 +10,7 @@ const SideContainer = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
+    background-color: white;
 
     .nav-header{
         display: flex;
@@ -21,12 +22,14 @@ const SideContainer = styled.div`
         width: 100%;
         display: flex;
         justify-content: space-evenly;
+        background-color: white;
     }
     .footer{
         position: fixed;
         left: 0;
         bottom: 0;
         padding: 0.8rem;
+        background-color: white;
     }
     .link{
         text-decoration: none;
@@ -111,7 +114,7 @@ const Navigation = () => {
         </RightProPic>
         <SideContainer>
             <header className="nav-header">
-                <div className="logo">
+                <div className="nav-logo">
                     <img src={Sauti} alt='Sauti Logo' className="nav-logo" onClick={() => {push('/')}} />
                 </div>
             </header> 

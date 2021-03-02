@@ -23,12 +23,12 @@ const SellerDashboard = () => {
     return (
         <div className='seller-dashboard'>
             <Navigation />
-                <div>
+                <div className='products-list'>
                     <div>
                         <div className='primary-header'>My Products</div>
                     </div>
-                    <div>
-                        <input type="text" placeholder='Search' />
+                    <div className='products-search-add'>
+                        <input className='search-input'type="text" placeholder='&#x1F50D;  Search' />
                         <AddProduct />
                     </div>
                     <table>

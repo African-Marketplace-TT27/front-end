@@ -20,6 +20,7 @@
   font-size: 32px;
   font-weight: 800;
   line-height: 38px;
+  text-align: left;
 }
 
 .secondary-header {
@@ -31,9 +32,31 @@
   padding: 10px;
 }
 
+.navigation {
+  background-color: white;
+  width: 270px;
+}
+
 .seller-dashboard {
   display: flex;
 }
+
+.products-list {
+  width: 100%;
+  padding: 36px 30px 30px;
+}
+
+.products-search-add {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+}
+
 .table-header {
   color: #C87D55;
   font-size: 17px;
@@ -66,3 +89,24 @@ tr img {
   width: 255px;
   padding-right: 30px;
 }
+
+.nav-logo {
+  background-color: white;
+}
+
+.search-input {
+  border: 2px solid #868662;
+  border-radius: 43px;
+  height: 37px;
+  color: #868662;
+  font-size: 15px;
+  line-height: 18px;
+  font-weight: 500;
+  padding-left: 20px;
+
+ 
+}
+
+ &:focus {
+    border: none;
+  }
