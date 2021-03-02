@@ -19,13 +19,6 @@ const WhiteForm = styled.form`
   padding: ${props => props.theme.formPadding};
   box-shadow: ${props => props.theme.formBoxShadow};
   border-radius: ${props => props.theme.formBorderRadius};
-
-  p {
-    background-color: white;
-    text-align: right;
-    color: #C87D55;
-    font-size: 15px;
-  }
 `
 
 const FormInput = styled.input`
