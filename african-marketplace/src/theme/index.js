@@ -1,13 +1,4 @@
 export default {
-    //background color
-    bgColor: '#FFFBF6',
-
-    //primary header styling (green)
-    primaryHeaderColor: '#868662',
-    primaryfontSize: '32px',
-    primaryfontWeight: '800',
-    primaryLineHeight: '38px',
-    
 
     //secondary header styling (orange)
     secondaryHeaderColor: '#C87D55',

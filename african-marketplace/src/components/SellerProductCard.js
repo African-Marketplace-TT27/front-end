@@ -7,7 +7,7 @@ const SellerProductCard = (props) => {
         <tr id={key} className="table-bottom-border">
             <td><img src={product.image} alt={product.prod_name} width='200px'/></td>
             <td>{product.prod_name}</td>
-            <td>{product.prod_Desc}</td>
+            <td className='product-description'>{product.prod_Desc}</td>
             <td>{product.inventory}</td>
             <td>{product.unit}</td>
             <td>{product.category}</td>
