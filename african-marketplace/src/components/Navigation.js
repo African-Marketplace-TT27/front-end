@@ -8,7 +8,7 @@ import Sauti from '../images/Sauti..svg';
 import Profile from '../images/profile.png'
 
 const SideContainer = styled.div`
-    width: 100%;
+    width: 100vw;
     display: flex;
     flex-direction: column;
     background-color: white;
@@ -16,7 +16,7 @@ const SideContainer = styled.div`
     .nav-header{
         display: flex;
         flex-direction: column;
-        width: 100%;
+        width: 100vw;
         margin-top: 2%;
     }
     .side-nav{
@@ -60,6 +60,7 @@ const SideContainer = styled.div`
         align-items: flex-start;
         text-align: left;
         margin-left: 2%;
+        max-width: 270px;
 
         .nav-header{
             margin-top: 5%;
