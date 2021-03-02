@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import AddProduct from './AddProduct'
 import SellerProductCard from './SellerProductCard'
 import Navigation from './Navigation'
+import styled from 'styled-components'
 
 // dummy data
 const products = [
@@ -11,6 +12,11 @@ const products = [
     { prod_id: 4, prod_name: 'Maize', prod_Desc: 'Maize is such a corny word for corn', category: 'Grains/Beans', country: 'Kenya', type: 'Maize', price: '$2.00', unit: 'pound', inventory: 5.5}, 
     { prod_id: 5, prod_name: 'Avocado', prod_Desc: 'Knowledge is knowning Avocado is a fruit. Wisdom is knowing whether to put it in a fruit salad', category: 'Fruit', country: 'South Sudan', type: 'Avocado', price: '$5.00', unit: 'pound', inventory: 300.3}, 
 ]
+
+// Styled Components
+
+
+
 
 const SellerDashboard = () => {
     //

@@ -2,30 +2,35 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
+import { ThemeProvider } from 'styled-components'
+
 
 // Redux and middleware
-import thunk from "redux-thunk";
-import { createStore, applyMiddleware } from "redux";
-import logger from 'redux-logger';
-import { Provider } from 'react-redux';
+// import thunk from "redux-thunk";
+// import { createStore, applyMiddleware } from "redux";
+// import logger from 'redux-logger';
+// import { Provider } from 'react-redux';
 
 // components
-import reducer from './reducers';
+// import reducer from './reducers';
 import App from './App';
 
 // styling
 import './index.css';
+import theme from './theme/index'
 
 // Redux Store
-const store = (createStore(reducer, applyMiddleware(thunk, logger)))
+// const store = (createStore(reducer, applyMiddleware(thunk, logger)))
 
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <Provider store = {store}>
-      <App />
-      </Provider>
+      {/* <Provider store = {store}> */}
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
+      {/* </Provider> */}
     </Router>
   </React.StrictMode>,
   document.getElementById('root')

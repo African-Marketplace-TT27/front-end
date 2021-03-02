@@ -1,5 +1,20 @@
 import React, {useState} from 'react'
 import { Form, Button, Col, Modal } from 'react-bootstrap'
+import styled from 'styled-components'
+
+//styled components
+const SmallButton = styled.button`
+    color: ${props => props.theme.smButtonTextColor};
+    background-color: ${props => props.theme.smButtonColor};
+    height: ${props => props.theme.smButtonHeight};
+    border-radius: ${props => props.theme.smButtonBorderRadius};
+    font-weight: ${props => props.theme.smButtonFontWeight};
+    font-size: ${props => props.theme.smButtonFontSize};
+    line-height: ${props => props.theme.smButtonLineHeight};
+    text-align: ${props => props.theme.smButtonTextAlign};
+    border: ${props => props.theme.smButtonBorder};
+    padding: ${props => props.theme.smButtonPadding};
+`
 
 
 const AddProduct = () => {
@@ -10,9 +25,9 @@ const AddProduct = () => {
     return (
         <div>
 
-            <Button  onClick={handleShow}>
+            <SmallButton  onClick={handleShow}>
                 Add Product
-            </Button>
+            </SmallButton>
 
             <Modal
                 show={show}
