@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link, useHistory } from 'react-router-dom';
+import { DropdownButton, Dropdown} from 'react-bootstrap'
 
 // Images
 import Sauti from '../images/Sauti..svg';
@@ -105,9 +106,14 @@ const Navigation = () => {
     return (
         <div className="navigation">
         <RightProPic>
-        <div className="right-aligned">    
-            <img src={Profile} alt="Seller Profile" className="profilePic" width="50px" height="50px"/>
-        </div>
+            <DropdownButton id="dropdown-basic-button" title={
+                <div className="right-aligned">
+                    <img src={Profile} alt="Seller Profile" className="profilePic" width="50px" height="50px" />
+                    </div>}
+            >
+                <Dropdown.Item href="/Settings">Settings</Dropdown.Item>
+                <Dropdown.Item href="/login">Log Out</Dropdown.Item>
+            </DropdownButton>
         </RightProPic>
         <SideContainer>
             <header className="nav-header">
@@ -118,16 +124,16 @@ const Navigation = () => {
             <div>
                 <div className="side-nav">
                     <div className=" side-nav dash-links"> 
-                        <Link className="link dash seller-dash" to="/SellerDashboard">Home</Link>
-                        <button className="link add ">Orders</button>
-                        <Link className="link dash products" to="/SellerDashboard">Products</Link>
-                        <button className="link add ">Reports</button>
-                    </div>   
-                
+                        <Link className="link" to="/SellerDashboard">Home</Link>
+                        <Link className="link" to="/Orders">Orders</Link>
+                        <Link className="link" to="/SellerDashboard">Products</Link>
+                        <Link className="link" to="/Reports">Reports</Link>  
+                    </div>
                     <div className="footer">
                         <button className="link add">Settings</button>
                         <button onClick={logout} className="log-out" >Log Out</button>
                     </div>
+                    
                 </div>
         </div>
         </SideContainer>
