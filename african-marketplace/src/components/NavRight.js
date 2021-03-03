@@ -29,6 +29,15 @@ const RightProPic = styled.div `
         border-radius: 5px;
     }
 
+    .fas{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 2rem;
+        margin-top: .75rem;
+        position: absolute;
+        // top: 60px;
+    }
     li{
         margin-left: 5px;
         cursor: pointer;
@@ -37,8 +46,13 @@ const RightProPic = styled.div `
         right: 60px;
         color: #783200;
         text-align: left;
-        padding: .8rem;
-        padding-right: 1rem;
+        padding: .5rem;
+        width: 143px;
+    }
+
+    .nav-name:hover{
+        background: #AD7C82;
+        color: #FFFFFF;
     }
 
     #right-side-nav {
@@ -55,7 +69,7 @@ const RightProPic = styled.div `
         content: "";
         position: absolute;
         top: -20px;
-        right: 21px; 
+        right: 54px; 
         border: 10px solid;
         border-color: transparent transparent #fff transparent;
        
@@ -100,7 +114,11 @@ const NavRight = () => {
                         <div id="right-side-nav">
                             <div>
                                 <ul>
+                                    <i class="fas fa-cog"></i>
                                     <li className="setting-btn nav-name" onClick={() => {push('/Settings')}} >Settings</li>
+                                    <br></br>
+                                    <i class="fas fa-sign-out-alt"></i>
+                                    
                                     <li onClick={logout} className="log-out nav-name">Logout</li>
                                 </ul>
                             </div>
