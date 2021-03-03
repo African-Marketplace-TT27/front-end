@@ -11,7 +11,6 @@ const SideContainer = styled.div`
     flex-direction: column;
     background-color: white;
     
-
     .nav-header{
         display: flex;
         flex-direction: column;
@@ -30,13 +29,13 @@ const SideContainer = styled.div`
         background-color: white;
         margin-top: 2%;
     }
-    .footer{
-        position: fixed;
-        left: 0;
-        bottom: 0;
-        padding: 0.8rem;
-        background-color: white;
-    }
+    // .footer{
+    //     position: fixed;
+    //     left: 0;
+    //     bottom: 0;
+    //     padding: 0.8rem;
+    //     background-color: white;
+    // }
     .link{
         text-decoration: none;
         color: #C87D55;
@@ -61,11 +60,12 @@ const SideContainer = styled.div`
     }
 
     @media (min-width: 1024px){
-        width: 20vw;
+        width: 15vw;
         align-items: flex-start;
         text-align: left;
-        margin-left: 2%;
+        margin-left: 5%;
         max-width: 270px;
+        height: 100vh;
 
         .nav-header{
             margin-top: 5%;
@@ -74,15 +74,15 @@ const SideContainer = styled.div`
             display: flex;
             flex-direction: column;
             padding-top: .7rem;
-            margin-top: .05rem;
-            width: 10rem;
+            margin-top: .2rem;
+            width: 15vw;
+        }
+        .link{
+            margin-top: 1.5rem;
         }
 
         button{
             text-align: left;
-        }
-        .footer{
-            
         }
     }
 `

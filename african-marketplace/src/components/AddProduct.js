@@ -1,6 +1,10 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { Form, Modal, Col } from 'react-bootstrap'
 import styled from 'styled-components'
+import { connect } from 'react-redux';
+
+// components
+import { addProduct, addProductError, getCategory } from '../actions';
 
 //styled components
 const SmallButton = styled.button`
@@ -86,10 +90,45 @@ const SuggestedPrice = styled.div`
     margin-bottom: 10px;
 `
 
-const AddProduct = () => {
+const AddProduct = ({categories, isFetchingCat, getCategory}) => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const [formValues, setFormValues] = useState({
+            prod_name: '',
+            prod_desc: '',
+            price: '',
+            inventory: "",
+            image: "",
+            category_name: "",
+            type_name: "",
+            unit_name: "",
+    });
+
+    const handleChange = e => {
+        setFormValues({
+            ...formValues,
+            [e.target.name]:e.target.value
+        })
+    }
+
+    const handleSubmit = e => {
+        e.preventDefault();
+        if(formValues.prod_name === "" || formValues.prod_desc === "") {
+            addProductError();
+        }else{
+            addProduct(formValues);
+            e.target.reset()
+        }
+    }
+
+    // useEffect(() => {
+    //         getCategory();
+    //     }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    
+        if(isFetchingCat){
+            return <h2> Loading Categories...</h2>;
+        }
 
     return (
         <div>
@@ -109,20 +148,54 @@ const AddProduct = () => {
                     <h4 onClick={handleClose}>X</h4>
                 </FormHeaderDiv>
     
-                    <WhiteForm className = "add-product-form">
-                        <FormInput placeholder="Product Name" />
-                        <FormInput placeholder="Description" />
+                    <WhiteForm onSubmit={handleSubmit} className = "add-product-form">
+                        <FormInput 
+                            placeholder="Product Name" 
+                            onChange={handleChange}
+                            value={formValues.prod_name}
+                            name="prod_name"
+                            id="prod_name"
+                            type="text"
+
+                        />
+                        <FormInput 
+                            placeholder="Description"
+                            onChange={handleChange}
+                            value={formValues.prod_desc}
+                            name="prod_desc"
+                            id="prod_desc"
+                            type="text"
+                             />
                         <Form.Row>
                             <Form.Group as={Col} controlId="productCategory">
-                                <FormInput as="select" defaultValue="">
-                                    <option>Category</option>
-                                    <option>Option 1</option>
-                                    <option>Option 2</option>
-                                    <option>Option 3</option>
+                                <FormInput as="select" defaultValue=""
+                                    onChange={handleChange}
+                                    value={formValues.category_name}
+                                    name="category_name"
+                                    id="category_name"
+                                    >
+                                    <option value="">--Select Category--</option>
+                                    {/* {
+                                        categories.map(category => {
+                                            return (
+                                                <option value={category.category_name}>{category.category_name}</option>
+                                            )
+                                        })
+                                    } */}
+                                    {/* <option value="animalProd">Animal Products</option>
+                                    <option value="grains_beans">Grains/Beans</option>
+                                    <option value="fruit">Fruit</option>
+                                    <option value="veg">Vegetables</option>
+                                    <option value="seeds_nut">Seeds/Nuts</option>
+                                    <option value="other">Other</option> */}
                                 </FormInput>
                             </Form.Group>
                             <Form.Group as={Col} controlId="productType">
-                                <FormInput as="select" defaultValue="">
+                                <FormInput as="select" defaultValue=""
+                                    onChange={handleChange}
+                                    value={formValues.type_name}
+                                    >
+
                                     <option>Type</option>
                                     <option>Option 1</option>
                                     <option>Option 2</option>
@@ -145,7 +218,7 @@ const AddProduct = () => {
                                 <FormInput placeholder="Price" />
                             </Form.Group>
                             <Form.Group as={Col} controlId="productUnitOfMeasure">
-                                <FormInput as="select" defaultValue="">
+                                <FormInput as="select" defaultValue="Select Unit" >
                                     <option>Unit</option>
                                     <option>Option 1</option>
                                     <option>Option 2</option>
@@ -153,7 +226,16 @@ const AddProduct = () => {
                                 </FormInput>
                             </Form.Group>
                             <Form.Group controlId="productInventory">
-                                <FormInput placeholder="Inventory" type='number' step="0.1" min='0'/>
+                                <FormInput 
+                                    placeholder="Inventory" 
+                                    type='number' 
+                                    step="0.1" 
+                                    min='0'
+                                    onChange={handleChange}
+                                    value={formValues.inventory}
+                                    name="inventory"
+                                    id="inventory"
+                                    />
                             </Form.Group>
                         </Form.Row>
 
@@ -174,5 +256,13 @@ const AddProduct = () => {
         </div>
     )
 }
+const mapStateToProps = state => {
+    return({
+        categories: state.categories,
+        isFetchingCat: state.isFetching,
+        error: state.error
+    
+    })
+}
 
-export default AddProduct
+export default connect(mapStateToProps, {addProductError, getCategory})(AddProduct)
