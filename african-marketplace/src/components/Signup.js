@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Logo from "../images/Sauti..svg";
 import { Form, Button } from "react-bootstrap";
 import styled from 'styled-components'
-
+import { Link, useHistory } from 'react-router-dom';
+import axios from 'axios';
+import * as Yup from 'yup';
+import Schema from "../validation/Schema"
 
 const SignUp = styled.div`
 width: 40%;
@@ -76,20 +79,122 @@ const Terms = styled.div`
   display: flex;
   justify-content: flex-start;
 `
+const initialSUFormValues = {
+  name: '',
+  email: '',
+  password: '',
+  pwconfirm: '',
+  country_id: 0,
+};
 
+const initialSUFormErrors = {
+  name: '',
+  email: '',
+  password: '',
+  pwconfirm: '',
+  country_id: 0,
+};
 
 const Signup = () => {
+  const [formValues, setFormValues] = useState(initialSUFormValues);
+  const [formErrors, setFormErrors] = useState(initialSUFormErrors);
+
+
+
+  const handleChange = (evt) => {
+    const { name, value } = evt.target;
+    
+    console.log(evt.target.value)
+    Yup.reach(Schema, name)
+      .validate(value)
+      .then(() => {
+        setFormErrors({ ...formErrors, [name]: '' });
+      })
+      .catch((err) => {
+        setFormErrors({ ...formErrors, [name]: err.errors[0] });
+      });
+
+    setFormValues({ ...formValues, [name]: value });
+    
+  };
+
+  let history = useHistory();
+
+  const formSubmit = (evt) => {
+    evt.preventDefault();
+
+
+    
+    const { name,  email, password, country_id } = formValues;
+    const newUser = { name,  email, password, country_id };
+    console.log('newuser', newUser);
+    axios
+      .post('https://african-marketplace-tt27.herokuapp.com/api/auth/register ', newUser)
+      .then((res) => {
+        console.log(res.data);
+        setFormValues('');
+        history.push('/SellerDashboard');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+
+
+
+
   return (
     <SignUp>
       <img className='form-logo' src={Logo} alt="Sauti logo" />
-      <WhiteForm>
-          <FormInput type="text" placeholder="Name" />
-          <FormInput type="email" placeholder="Enter email" />
-          <FormInput type="password" placeholder="Password" />
-          <FormInput type="password" placeholder="Confirm Password" />
-          <FormInput  as="select">
-            <option>Country</option>
+      <WhiteForm onSubmit={(e) => {
+              formSubmit(e);
+            }}>
+          <FormInput 
+          name = "name"
+          type="text" 
+          placeholder="Name" 
+          onChange = {handleChange}
+          />
+
+          <FormInput 
+          name = "email"
+          type="email" 
+          placeholder="Enter email" 
+          onChange = {handleChange}
+
+          />
+
+          <FormInput 
+          name = "password"
+          type="password" 
+          placeholder="Password" 
+          onChange = {handleChange}
+
+          />
+
+          <FormInput 
+                    name = "pwconfirm"
+
+          type="password" 
+          placeholder="Confirm Password" 
+          onChange = {handleChange}
+
+          />
+          <FormInput onChange = {handleChange} as="select" name ="country_id" >
+            <option value = {0} >Country</option>
+            <option value = {1} >Kenya</option>
+            <option value = {2}>Uganda</option>
+            <option value = {3} >Tanzania</option>
+            <option value = {4} >Rwanda</option>
+            <option value = {5} >South Sudan</option>
+            <option value = {6} >Burudni</option>
+            <option value = {7} >Democratic Republic of Congo (DRC)</option>
           </FormInput>
+              <p>{formErrors.email}</p>
+              <p>{formErrors.name}</p>
+              <p>{formErrors.password}</p>
+              <p>{formErrors.pwconfirm}</p>
           <Terms>
             <TermsAgree type="checkbox" />
             <TermsAgreeLabel>Agree to Terms and Conditions</TermsAgreeLabel>
@@ -97,8 +202,11 @@ const Signup = () => {
           <FormButton type="submit">
             Sign Up
           </FormButton>
-           {/* Will make into a link later */}
-       <p>Already have an account? | Log In</p>
+       <p>              <span>Already have an account? | </span>
+              <Link to='/login' className='loginLink'>
+                Login
+              </Link></p>
+
       </WhiteForm>
     </SignUp>
   );

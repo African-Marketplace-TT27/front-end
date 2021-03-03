@@ -1,7 +1,9 @@
-import React from "react";
+import React, {useState} from "react";
 import {Form, Button} from 'react-bootstrap';
 import styled from 'styled-components';
 import Logo from '../images/Sauti..svg'
+import { Link, useHistory } from 'react-router-dom';
+import { axiosWithAuth } from '../utility/axiosWIthAuth';
 
 
 const LoginContainer = styled.div`
@@ -56,19 +58,64 @@ const FormButton = styled.button`
 `
 
 const Login = () => {
+
+  const [formvalues, setFormvalues] = useState({
+    email: '',
+    password: '',
+  });
+
+  let history = useHistory();
+  const onChange = (event) => {
+    setFormvalues({ ...formvalues, [event.target.name]: event.target.value });
+  };
+
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+    console.log(formvalues);
+    axiosWithAuth()
+      .post('/auth/login', formvalues)
+      .then((res) => {
+        console.log(res.data);
+        
+        localStorage.setItem('token', res.data.token);
+        console.log(res.data.token)
+        history.push('/SellerDashboard');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+
   return (
     <LoginContainer>
         <img className='form-logo' src={Logo} alt='Sauti logo'/>
 
-        <WhiteForm>
-            <FormInput type="email" placeholder="Enter email" />
-            <FormInput type="password" placeholder="Password" />
+        <WhiteForm onSubmit = {onSubmit}>
+            <FormInput 
+            name ="email"
+            type="email" 
+            placeholder="Enter email" 
+            onChange = {onChange}
+            />
+
+            <FormInput 
+            name = "password"
+            type="password" 
+            placeholder="Password" 
+            onChange = {onChange}
+
+            />
           
           <FormButton type="submit">
             Submit
           </FormButton>
-          {/* Will make into a link later */}
-          <p>Become a Seller | Sign Up</p>
+
+          <p>        Become a Seller |{' '}
+        <Link to='/signup'>
+          <span> Sign Up</span>
+        </Link>{' '}</p>
         </WhiteForm>
 
     </LoginContainer>

@@ -4,6 +4,7 @@ import {Route, Switch} from 'react-router-dom'
 // Import components
 import Login from "./components/Login";
 import Signup from "./components/Signup";
+import PrivateRoute from "./utility/PrivateRoute"
 
 // Styling
 import "./App.css";
@@ -16,7 +17,10 @@ import SellerDashboard from "./components/SellerDashboard";
 import Settings from './components/Settings';
 import Orders from './components/Orders';
 import Reports from './components/Reports';
-// import Navigation from './components/Navigation';
+
+import Navigation from './components/Navigation';
+import EditItem from './components/EditItem'
+
 
 function App() {
   return (
@@ -25,11 +29,14 @@ function App() {
         <Switch>
           <Route path="/Login" component={Login}/>
           <Route path="/Signup" component={Signup}/>
-          <Route path="/SellerDashboard" component={SellerDashboard} />
-          <Route path="/Settings" component={Settings} />
-          <Route path="/Orders" component={Orders} />
-          <Route path="/Reports" component={Reports} />
-          {/* <Route path="/Navigation" component={Navigation} /> */}
+
+          <PrivateRoute path="/SellerDashboard" component={SellerDashboard} />
+          <PrivateRoute path="/Settings" component={Settings} />
+          <PrivateRoute path="/Orders" component={Orders} />
+          <PrivateRoute path="/Reports" component={Reports} />
+          <PrivateRoute path="/Navigation" component={Navigation} />
+          <PrivateRoute path="/EditItem" component={EditItem}/>
+
           <Route path="/" component={MarketingPage} />
         </Switch>
 
