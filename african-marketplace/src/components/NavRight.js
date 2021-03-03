@@ -42,8 +42,8 @@ const RightProPic = styled.div `
     }
 
     #right-side-nav {
+        display: none;
         position: absolute;
-        display: flex;
         border-radius: 5px;
         box-shadow: 0px 2px 3px rgba(0,0,0,0.25);
         padding: 3px 55px;
@@ -58,6 +58,7 @@ const RightProPic = styled.div `
         right: 21px; 
         border: 10px solid;
         border-color: transparent transparent #fff transparent;
+       
     }
     
     // .right-side-nav {
