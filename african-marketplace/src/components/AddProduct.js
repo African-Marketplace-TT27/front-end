@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { connect } from 'react-redux';
 
 // components
-import { addProduct, addProductError, getCategory } from '../actions';
+import { addProduct, addProductError, getCategory, getCountry } from '../actions';
 
 //styled components
 const SmallButton = styled.button`
@@ -90,7 +90,7 @@ const SuggestedPrice = styled.div`
     margin-bottom: 10px;
 `
 
-const AddProduct = ({categories, isFetchingCat, getCategory}) => {
+const AddProduct = ({categories, isFetchingCat, getCategory, countries, getCountry, isFetchingCou}) => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -122,13 +122,18 @@ const AddProduct = ({categories, isFetchingCat, getCategory}) => {
         }
     }
 
-    // useEffect(() => {
-    //         getCategory();
-    //     }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    useEffect(() => {
+            getCategory();
+            getCountry();
+        }, []); // eslint-disable-line react-hooks/exhaustive-deps
     
         if(isFetchingCat){
             return <h2> Loading Categories...</h2>;
         }
+        if(isFetchingCou){
+            return <h2> Loading Countries...</h2>;
+        }
+
 
     return (
         <div>
@@ -175,54 +180,75 @@ const AddProduct = ({categories, isFetchingCat, getCategory}) => {
                                     id="category_name"
                                     >
                                     <option value="">--Select Category--</option>
-                                    {/* {
+                                    {
                                         categories.map(category => {
                                             return (
                                                 <option value={category.category_name}>{category.category_name}</option>
                                             )
                                         })
-                                    } */}
-                                    {/* <option value="animalProd">Animal Products</option>
-                                    <option value="grains_beans">Grains/Beans</option>
-                                    <option value="fruit">Fruit</option>
-                                    <option value="veg">Vegetables</option>
-                                    <option value="seeds_nut">Seeds/Nuts</option>
-                                    <option value="other">Other</option> */}
+                                    }
                                 </FormInput>
                             </Form.Group>
                             <Form.Group as={Col} controlId="productType">
                                 <FormInput as="select" defaultValue=""
                                     onChange={handleChange}
                                     value={formValues.type_name}
+                                    name="type_name"
+                                    id="type_name"
                                     >
-
-                                    <option>Type</option>
-                                    <option>Option 1</option>
-                                    <option>Option 2</option>
-                                    <option>Option 3</option>
+                                    <option value="">--Select Type--</option>
+                                    <option value="freshProduct">Fresh Product</option>
+                                    <option value="dryGoods">Dry Goods</option>
+                                    <option value="goat">Goat</option>
+                                    <option value="other">Other</option>
                                 </FormInput>
                             </Form.Group>
                         </Form.Row>
 
                         <Form.Group controlId="productCountry">
-                            <FormInput as="select">
-                                <option>Country of Origin</option>
-                                <option>Option 1</option>
+                            <FormInput as="select"
+                            onChange={handleChange}
+                            value={formValues.country_name}
+                            name="country_name"
+                            id="country_name"
+                            >
+                                <option value="">--Select Country--</option>
+                                {
+                                    countries.map(country => {
+                                        return(
+                                            <option value={country.country_name}>{country.country_name}</option>
+                                        )
+                                    })
+                                }
+                                {/* <option>Option 1</option>
                                 <option>Option 2</option>
-                                <option>Option 3</option>
+                                <option>Option 3</option> */}
                             </FormInput>
                         </Form.Group>
 
                         <Form.Row>
                             <Form.Group as={Col} controlId="productPrice">
-                                <FormInput placeholder="Price" />
+                                <FormInput 
+                                placeholder="Price"
+                                onChange={handleChange}
+                                value={formValues.price}
+                                name="price"
+                                id="price"
+                                type="text" />
                             </Form.Group>
                             <Form.Group as={Col} controlId="productUnitOfMeasure">
-                                <FormInput as="select" defaultValue="Select Unit" >
-                                    <option>Unit</option>
-                                    <option>Option 1</option>
-                                    <option>Option 2</option>
-                                    <option>Option 3</option>
+                                <FormInput as="select"
+                                onChange={handleChange}
+                                value={formValues.unit_name}
+                                name="unit_name"
+                                id="unit_name"
+                                type="text" >
+                                    <option value="">--Unit--</option>
+                                    <option value="kilograms">Kilograms</option>
+                                    <option value="grams">Grams</option>
+                                    <option value="dozen">Dozen</option>
+                                    <option value="liters">Liters</option>
+                            
                                 </FormInput>
                             </Form.Group>
                             <Form.Group controlId="productInventory">
@@ -260,9 +286,10 @@ const mapStateToProps = state => {
     return({
         categories: state.categories,
         isFetchingCat: state.isFetching,
-        error: state.error
-    
+        error: state.error,
+        isFetchingCou: state.isFetchingCou,
+        countries: state.countries
     })
 }
 
-export default connect(mapStateToProps, {addProductError, getCategory})(AddProduct)
+export default connect(mapStateToProps, {addProductError, getCategory, getCountry})(AddProduct)

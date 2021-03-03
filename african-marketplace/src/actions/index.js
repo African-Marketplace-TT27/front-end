@@ -12,6 +12,10 @@ export const FETCH_CATEGORY_START = 'FETCH_CATEGORY_START';
 export const FETCH_CATEGORY_SUCCESS = 'FETCH_CATEGORY_SUCCESS';
 export const FETCH_CATEGORY_FAIL = 'FETCH_CATEGORY_FAIL';
 
+export const FETCH_COUNTRY_START = 'FETCH_COUNTRY_START';
+export const FETCH_COUNTRY_SUCCESS = 'FETCH_COUNTRY_SUCCESS';
+export const FETCH_COUNTRY_FAIL = 'FETCH_COUNTRY_FAIL';
+
 export const getProduct = () => {
     return (dispatch => {
         dispatch({type:FETCH_PRODUCT_START})
@@ -62,3 +66,17 @@ export const getCategory = () => {
     })
 };
 
+export const getCountry = () => {
+    return (dispatch => {
+        dispatch({type:FETCH_COUNTRY_START})
+        axiosWithAuth()
+            .get(`/countries`)
+            .then(res => {
+                dispatch({type: FETCH_COUNTRY_SUCCESS, payload: res.data});
+                console.log (res.data)
+            })
+            .catch(err => {
+                dispatch({type: FETCH_COUNTRY_FAIL, payload: err.Response.data});
+            });
+    })
+};

@@ -1,11 +1,13 @@
-import {FETCH_PRODUCT_START, FETCH_PRODUCT_SUCCESS, FETCH_PRODUCT_FAIL, ADD_PRODUCT, ADD_PRODUCT_SUCCESS, ADD_PRODUCT_FAIL, FETCH_CATEGORY_START, FETCH_CATEGORY_SUCCESS, FETCH_CATEGORY_FAIL} from '../actions'
+import {FETCH_PRODUCT_START, FETCH_PRODUCT_SUCCESS, FETCH_PRODUCT_FAIL, ADD_PRODUCT, ADD_PRODUCT_SUCCESS, ADD_PRODUCT_FAIL, FETCH_CATEGORY_START, FETCH_CATEGORY_SUCCESS, FETCH_CATEGORY_FAIL, FETCH_COUNTRY_START, FETCH_COUNTRY_SUCCESS, FETCH_COUNTRY_FAIL} from '../actions'
 import uuid from 'react-uuid';
 
 export const initialState = {
     products: [],
     categories: [],
+    countries: [],
     isFetching: false,
     isFetchingCat: false,
+    isFetchingCou: false,
     error: '',
 }
 
@@ -65,6 +67,24 @@ const reducer = (state= initialState, action) => {
                 ...state,
                 isFetchingCat: true,
                 error: "Fetching categories is broken..."
+            })
+        case(FETCH_COUNTRY_START):
+            return({
+                ...state,
+                isFetchingCou: true,
+                error: ''
+            })
+        case(FETCH_COUNTRY_SUCCESS):
+            return({
+                ...state,
+                countries: action.payload,
+                isFetchingCou: false
+            })
+        case(FETCH_COUNTRY_FAIL):
+            return({
+                ...state,
+                isFetchingCou: true,
+                error: "Fetching countries is broken..."
             })
         default:
             return state;
