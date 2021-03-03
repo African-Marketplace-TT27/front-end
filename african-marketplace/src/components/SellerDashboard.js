@@ -33,34 +33,7 @@ const SellerDashboard = () => {
                     <div>
                         <div className='primary-header'>My Products</div>
                     </div>
-                    <div className='products-search-add'>
-                        <input className='search-input'type="text" placeholder='&#x1F50D;  Search' />
-                        <AddProduct />
-                    </div>
-                    <table>
-                        <thead>
-                            <tr className = 'table-header'>
-                                <th style={{width: "110px"}}></th>
-                                <th>Product Name</th>
-                                <th className="product-description">Product Description</th>
-                                <th>Inventory</th>
-                                <th>Measure</th>
-                                <th>Category</th>
-                                <th>Type</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                products.map(product => {
-                                    return (
-                                        <SellerProductCard key={product.prod_id} product={product} />
-                                    )
-                                })
-                            }
-                        </tbody>
-                    </table>
-                </div>
+
                 <div className='products-search-add'>
                     <input className='search-input'type="text" placeholder='&#x1F50D;  Search' />
                     <AddProduct />
@@ -89,7 +62,7 @@ const SellerDashboard = () => {
                     </tbody>
                 </table>
             </div>
-        </div>
+       </div>
     )
 }
 
