@@ -15,6 +15,11 @@ import SellerItem from './SellerItem'
 
 export default function MarketingPage() {
     const [sellerItems, setSellerItems] = useState([])
+    const [search, setSearch] = useState({
+        search: ""
+    })
+
+
 
 useEffect(()=>{
     axios.get('https://reqres.in/api/unknown')
@@ -27,6 +32,14 @@ useEffect(()=>{
     })
 }, [])
 
+const updateSearch=(e)=>{
+setSearch({...search, [e.target.name]: e.target.value})
+}
+
+// const filteredItems(()=>{
+
+// })
+
     return (
         <div>
             <Header>
@@ -35,7 +48,7 @@ useEffect(()=>{
                 </NavLogo>
                 <NavBar className="navBar">
                     <div className="searchBar">
-                    <h6> Search Bar </h6>
+                    <input label="Search Items" type="text" placeholder="Search" value={search.search} onChange={updateSearch}></input>
                     </div>
                     <div className="loginLinkCont">
                         <img width="65px" src={cart} alt="shopping cart icon"/>
