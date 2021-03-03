@@ -2,13 +2,19 @@ import React from 'react'
 
 // components 
 import Navigation from './Navigation';
+import NavRight from './NavRight'
 
 const Reports = () => {
     return (
+        <>
         <div>
             <Navigation />
-            <h1>Future Home of Reports</h1>
+            <NavRight />
         </div>
+        <div className="content">
+            <h1>Report Details Coming Soon!</h1>
+        </div>
+        </>
     )
 }
 

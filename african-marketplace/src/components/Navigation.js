@@ -1,29 +1,34 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link, useHistory } from 'react-router-dom';
-import { DropdownButton, Dropdown} from 'react-bootstrap'
 
 // Images
 import Sauti from '../images/Sauti..svg';
-import Profile from '../images/profile.png'
 
 const SideContainer = styled.div`
     width: 100vw;
     display: flex;
     flex-direction: column;
     background-color: white;
+    
 
     .nav-header{
         display: flex;
         flex-direction: column;
         width: 100vw;
         margin-top: 2%;
+        background-color: white;
     }
+    .side-nav-container{
+        background-color: white;
+    }
+
     .side-nav{
         width: 100%;
         display: flex;
         justify-content: space-evenly;
         background-color: white;
+        margin-top: 2%;
     }
     .footer{
         position: fixed;
@@ -81,69 +86,29 @@ const SideContainer = styled.div`
         }
     }
 `
-const RightProPic = styled.div `
-    img{
-        display: none; 
-    }
-
-   @media (min-width: 1024px){
-       
-       img{
-        display: flex;
-        position: fixed;
-        right: 0;
-        border-radius: 50px 50px;
-        border: solid 2px #AD7C82;
-        margin: 0.5rem;
-       }
-   }
-
-`
 const Navigation = () => {
     const { push } = useHistory();
 
-    const logout = () => {
-        localStorage.setItem('token', null)
-        push('/login')
-    }
-
     return (
         <div className="navigation">
-        <RightProPic>
-            <DropdownButton id="dropdown-basic-button" title={
-                <div className="right-aligned">
-                    <img src={Profile} alt="Seller Profile" className="profilePic" width="50px" height="50px" />
-                    </div>}
-            >
-                <Dropdown.Item href="/Settings">Settings</Dropdown.Item>
-                <Dropdown.Item href="/login">Log Out</Dropdown.Item>
-            </DropdownButton>
-        </RightProPic>
-        <SideContainer>
-            <header className="nav-header">
-                <div className="nav-logo">
-                    <img src={Sauti} alt='Sauti Logo' className="nav-logo" onClick={() => {push('/')}} />
-                </div>
-            </header> 
-            <div>
-                <div className="side-nav">
-                    <div className=" side-nav dash-links"> 
-                        <Link className="link" to="/SellerDashboard">Home</Link>
-                        <Link className="link" to="/Orders">Orders</Link>
-                        <Link className="link" to="/SellerDashboard">Products</Link>
-                        <Link className="link" to="/Reports">Reports</Link>  
+            <SideContainer>
+                <header className="nav-header">
+                    <div className="nav-logo">
+                        <img src={Sauti} alt='Sauti Logo' className="nav-logo" onClick={() => {push('/')}} />
                     </div>
-                    <div className="footer">
-                        <button className="link add">Settings</button>
-                        <button onClick={logout} className="log-out" >Log Out</button>
+                </header> 
+                <div className="side-nav-container">
+                    <div className="side-nav">
+                        <div className=" side-nav dash-links"> 
+                            <Link className="link" to="/SellerDashboard">Home</Link>
+                            <Link className="link" to="/Orders">Orders</Link>
+                            <Link className="link" to="/SellerDashboard">Products</Link>
+                            <Link className="link" to="/Reports">Reports</Link>  
+                        </div> 
                     </div>
-                    
                 </div>
+            </SideContainer>
         </div>
-        </SideContainer>
-        
-        </div>
-       
     )
 }
 
