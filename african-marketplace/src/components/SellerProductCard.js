@@ -12,7 +12,7 @@ const SellerProductCard = (props) => {
             <td className='product-measure'>{product.unit}</td>
             <td>{product.category}</td>
             <td className='product-type'>{product.type}</td>
-            <td>X - Delete</td>
+            <td>Delete</td>
         </tr>
     )
 }

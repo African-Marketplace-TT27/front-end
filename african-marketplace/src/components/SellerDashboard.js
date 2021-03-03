@@ -74,7 +74,7 @@ const SellerDashboard = () => {
                             <th className="product-inventory" >Inventory</th>
                             <th className="product-measure">Measure</th>
                             <th>Category</th>
-                            <th className='product-type'>Type</th>
+                            <th className='product-type' >Type</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
