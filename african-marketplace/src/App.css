@@ -92,6 +92,22 @@ tr img {
   display: none;
 }
 
+.product-image {
+  display: none;
+}
+
+.product-inventory {
+  display: none;
+}
+
+.product-measure {
+  display: none;
+}
+
+.product-type {
+  display: none;
+}
+
 .nav-logo {
   background-color: white;
 }
@@ -135,15 +151,27 @@ tr img {
   background-color: white !important;
 }
 
-.add-product-form {
-  border-radius: 5px;
-}
-
 @media (min-width: 1024px) {
   .seller-dashboard {
     flex-direction: row;
   }
   .product-description {
+    display: table-cell;
+  }
+
+  .product-image {
+    display: table-cell;
+  }
+
+  .product-inventory {
+    display: table-cell;
+  }
+
+  .product-measure {
+    display: table-cell;
+  }
+
+  .product-type {
     display: table-cell;
   }
 }

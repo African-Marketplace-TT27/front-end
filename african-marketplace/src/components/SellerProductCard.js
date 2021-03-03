@@ -5,13 +5,13 @@ const SellerProductCard = (props) => {
     
    return (
         <tr id={key} className="table-bottom-border">
-            <td><img src={product.image} alt={product.prod_name} width='200px'/></td>
+            <td className='product-image'><img src={product.image} alt={product.prod_name} width='200px'/></td>
             <td>{product.prod_name}</td>
             <td className='product-description'>{product.prod_Desc}</td>
-            <td>{product.inventory}</td>
-            <td>{product.unit}</td>
+            <td className='product-inventory'>{product.inventory}</td>
+            <td className='product-measure'>{product.unit}</td>
             <td>{product.category}</td>
-            <td>{product.type}</td>
+            <td className='product-type'>{product.type}</td>
             <td>X - Delete</td>
         </tr>
     )
