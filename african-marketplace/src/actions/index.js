@@ -37,9 +37,11 @@ export const addProduct = (newProduct) => {
         axiosWithAuth() 
             .post(`/products`, newProduct)
             .then(res => {
+                console.log("Testing addProduct", res)
                 dispatch({type:ADD_PRODUCT_SUCCESS, payload:res.data});
             })
             .catch(err => {
+                console.log("test error", err.Response)
                 dispatch({type:FETCH_PRODUCT_FAIL, payload: err.Response.data})
             });
     })

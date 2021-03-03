@@ -89,22 +89,24 @@ const SuggestedPrice = styled.div`
     line-height: 19px;
     margin-bottom: 10px;
 `
-
-const AddProduct = ({categories, isFetchingCat, getCategory, countries, getCountry, isFetchingCou}) => {
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-    const [formValues, setFormValues] = useState({
+const initialFormValues = {
             prod_name: '',
             prod_desc: '',
-            price: '',
-            inventory: "",
+            price: 0,
+            inventory: 0,
             image: "",
             category_name: "",
             type_name: "",
             unit_name: "",
-    });
+}
 
+const AddProduct = ({addProduct, categories, isFetchingCat, getCategory, countries, getCountry, isFetchingCou}) => {
+    const [show, setShow] = useState(false);
+    const handleShow = () => setShow(true);
+    const [formValues, setFormValues] = useState(initialFormValues);
+    const handleClose = () => {
+        setShow(false);  
+        setFormValues(initialFormValues)};
     const handleChange = e => {
         setFormValues({
             ...formValues,
@@ -117,9 +119,12 @@ const AddProduct = ({categories, isFetchingCat, getCategory, countries, getCount
         if(formValues.prod_name === "" || formValues.prod_desc === "") {
             addProductError();
         }else{
+            console.log(formValues);
             addProduct(formValues);
-            e.target.reset()
+            setShow(false);
+            setFormValues(initialFormValues);
         }
+
     }
 
     useEffect(() => {
@@ -173,7 +178,7 @@ const AddProduct = ({categories, isFetchingCat, getCategory, countries, getCount
                              />
                         <Form.Row>
                             <Form.Group as={Col} controlId="productCategory">
-                                <FormInput as="select" defaultValue=""
+                                <FormInput as="select" 
                                     onChange={handleChange}
                                     value={formValues.category_name}
                                     name="category_name"
@@ -190,7 +195,7 @@ const AddProduct = ({categories, isFetchingCat, getCategory, countries, getCount
                                 </FormInput>
                             </Form.Group>
                             <Form.Group as={Col} controlId="productType">
-                                <FormInput as="select" defaultValue=""
+                                <FormInput as="select" 
                                     onChange={handleChange}
                                     value={formValues.type_name}
                                     name="type_name"
@@ -242,7 +247,7 @@ const AddProduct = ({categories, isFetchingCat, getCategory, countries, getCount
                                 value={formValues.unit_name}
                                 name="unit_name"
                                 id="unit_name"
-                                type="text" >
+                                >
                                     <option value="">--Unit--</option>
                                     <option value="kilograms">Kilograms</option>
                                     <option value="grams">Grams</option>
@@ -265,13 +270,13 @@ const AddProduct = ({categories, isFetchingCat, getCategory, countries, getCount
                             </Form.Group>
                         </Form.Row>
 
-                        <SuggestedPrice>Suggested Market Price: $PRICE</SuggestedPrice>
+                        <SuggestedPrice>Suggested Market Price: Juan</SuggestedPrice>
 
                         <FormInput
                             type="file"
                         />
 
-                        <FormButton type="submit" onClick={handleClose}>
+                        <FormButton type="submit">
                             Add New Product
                         </FormButton>
                     </WhiteForm>
@@ -292,4 +297,4 @@ const mapStateToProps = state => {
     })
 }
 
-export default connect(mapStateToProps, {addProductError, getCategory, getCountry})(AddProduct)
+export default connect(mapStateToProps, {addProduct, addProductError, getCategory, getCountry})(AddProduct)
