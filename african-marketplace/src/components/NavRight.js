@@ -74,17 +74,6 @@ const RightProPic = styled.div `
         border-color: transparent transparent #fff transparent;
        
     }
-    
-    // .right-side-nav {
-    //     background: #74ded8;
-    //     padding: 10px 18px;
-    //     border-top-left-radius: 15px;
-    //     border-bottom-left-radius: 15px;
-    // }
-    
-    // .right-side-nav .dd_right{
-    //     padding: 15px 20px;
-    // }
 
    }
 `
