@@ -12,13 +12,15 @@ import "bootstrap/dist/css/bootstrap.css";
 
 //Components
 import MarketingPage from './components/MarketingPage'
-import AddProduct from './components/AddProduct'
+// import AddProduct from './components/AddProduct'
 import SellerDashboard from "./components/SellerDashboard";
 import Settings from './components/Settings';
 import Orders from './components/Orders';
 import Reports from './components/Reports';
+
 import Navigation from './components/Navigation';
 import EditItem from './components/EditItem'
+
 
 function App() {
   return (
@@ -27,12 +29,14 @@ function App() {
         <Switch>
           <Route path="/Login" component={Login}/>
           <Route path="/Signup" component={Signup}/>
+
           <PrivateRoute path="/SellerDashboard" component={SellerDashboard} />
           <PrivateRoute path="/Settings" component={Settings} />
           <PrivateRoute path="/Orders" component={Orders} />
           <PrivateRoute path="/Reports" component={Reports} />
           <PrivateRoute path="/Navigation" component={Navigation} />
           <PrivateRoute path="/EditItem" component={EditItem}/>
+
           <Route path="/" component={MarketingPage} />
         </Switch>
 

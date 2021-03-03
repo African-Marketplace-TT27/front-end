@@ -1,8 +1,14 @@
 import React, {useState, useEffect} from 'react'
+
+// components
 import AddProduct from './AddProduct'
 import SellerProductCard from './SellerProductCard'
 import Navigation from './Navigation'
+import NavRight from './NavRight'
+
+// styles
 import styled from 'styled-components'
+
 
 // dummy data
 const products = [
@@ -23,6 +29,7 @@ const SellerDashboard = () => {
     return (
         <div className='seller-dashboard'>
             <Navigation />
+            <NavRight />
                 <div className='products-list'>
                     <div>
                         <div className='primary-header'>My Products</div>
