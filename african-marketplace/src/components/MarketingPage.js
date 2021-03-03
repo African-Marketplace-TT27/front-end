@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react'
 import {Link} from 'react-router-dom'
-import axios from 'axios'
 import styled from 'styled-components'
 
 //images
@@ -12,6 +11,7 @@ import logoWhite from '../images/Sauti.white.png'
 
 //component
 import SellerItem from './SellerItem'
+import { axiosWithAuth } from '../utility/axiosWIthAuth'
 
 export default function MarketingPage() {
     const [sellerItems, setSellerItems] = useState([])
@@ -22,7 +22,8 @@ export default function MarketingPage() {
 
 
 useEffect(()=>{
-    axios.get('https://reqres.in/api/unknown')
+    axiosWithAuth()
+    .get('/')
     .then((resp)=>{
         console.log(resp.data.data)
         setSellerItems(resp.data.data)

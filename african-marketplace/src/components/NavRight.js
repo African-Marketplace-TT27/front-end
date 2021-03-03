@@ -103,10 +103,10 @@ const NavRight = () => {
                         <div id="right-side-nav">
                             <div>
                                 <ul>
-                                    <i class="fas fa-cog"></i>
+                                    <i className="fas fa-cog"></i>
                                     <li className="setting-btn nav-name" onClick={() => {push('/Settings')}} >Settings</li>
                                     <br></br>
-                                    <i class="fas fa-sign-out-alt"></i>
+                                    <i className="fas fa-sign-out-alt"></i>
                                     
                                     <li onClick={logout} className="log-out nav-name">Logout</li>
                                 </ul>
