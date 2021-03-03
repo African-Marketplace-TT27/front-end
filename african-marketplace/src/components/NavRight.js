@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, from 'react'
 import Profile from '../images/profile.png'
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
@@ -75,7 +75,6 @@ const RightProPic = styled.div `
    }
 `
 const NavRight = () => {
-    // const [isActive, setActive] = useState("false");
     const { push } = useHistory()
 
     const logout = () => {
@@ -109,16 +108,6 @@ const NavRight = () => {
 				    </li>
 			    </ul>
             </div>
-            {/* <DropdownButton className="drop-down" title={
-                <div className="right-aligned">
-                    <img src={Profile} alt="Seller Profile" className="profilePic" width="50px" height="50px" />
-                    </div>}
-            >
-                <Dropdown.Item href="/Settings">Settings</Dropdown.Item>
-                <Dropdown.Item href="/login">Log Out</Dropdown.Item>
-                <button className="setting-btn">Settings</button>
-                <button onClick={logout} className="log-out" >Log Out</button>
-            </DropdownButton> */}
         </RightProPic>
     )
 }
