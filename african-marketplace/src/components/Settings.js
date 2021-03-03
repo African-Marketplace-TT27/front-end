@@ -5,10 +5,14 @@ import Navigation from './Navigation';
 
 const Settings = () => {
     return (
+        <>
         <div>
             <Navigation />
-            <h1>Furture Home of Settings</h1>
         </div>
+        <div className="content">
+            <h1>Setting Details Coming Soon!</h1>
+        </div>
+        </>
     )
 }
 

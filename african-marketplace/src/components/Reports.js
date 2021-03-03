@@ -5,10 +5,14 @@ import Navigation from './Navigation';
 
 const Reports = () => {
     return (
+        <>
         <div>
             <Navigation />
-            <h1>Future Home of Reports</h1>
         </div>
+        <div className="content">
+            <h1>Report Details Coming Soon!</h1>
+        </div>
+        </>
     )
 }
 

@@ -11,12 +11,12 @@ import "bootstrap/dist/css/bootstrap.css";
 
 //Components
 import MarketingPage from './components/MarketingPage'
-import AddProduct from './components/AddProduct'
+// import AddProduct from './components/AddProduct'
 import SellerDashboard from "./components/SellerDashboard";
 import Settings from './components/Settings';
 import Orders from './components/Orders';
 import Reports from './components/Reports';
-import Navigation from './components/Navigation';
+// import Navigation from './components/Navigation';
 
 function App() {
   return (
@@ -29,7 +29,7 @@ function App() {
           <Route path="/Settings" component={Settings} />
           <Route path="/Orders" component={Orders} />
           <Route path="/Reports" component={Reports} />
-          <Route path="/Navigation" component={Navigation} />
+          {/* <Route path="/Navigation" component={Navigation} /> */}
           <Route path="/" component={MarketingPage} />
         </Switch>
 
