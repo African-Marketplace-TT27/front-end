@@ -17,6 +17,7 @@ import Settings from './components/Settings';
 import Orders from './components/Orders';
 import Reports from './components/Reports';
 import Navigation from './components/Navigation';
+import EditItem from './components/EditItem'
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="/Orders" component={Orders} />
           <Route path="/Reports" component={Reports} />
           <Route path="/Navigation" component={Navigation} />
+          <Route path="/EditItem" component={EditItem}/>
           <Route path="/" component={MarketingPage} />
         </Switch>
 
