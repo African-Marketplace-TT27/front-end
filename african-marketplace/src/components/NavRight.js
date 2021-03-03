@@ -1,4 +1,4 @@
-import React, from 'react'
+import React from 'react'
 import Profile from '../images/profile.png'
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
