@@ -1,14 +1,19 @@
-import {FETCH_PRODUCT_START, FETCH_PRODUCT_SUCCESS, FETCH_PRODUCT_FAIL, ADD_PRODUCT, ADD_PRODUCT_SUCCESS, ADD_PRODUCT_FAIL, FETCH_CATEGORY_START, FETCH_CATEGORY_SUCCESS, FETCH_CATEGORY_FAIL, FETCH_COUNTRY_START, FETCH_COUNTRY_SUCCESS, FETCH_COUNTRY_FAIL} from '../actions'
+import {FETCH_PRODUCT_START, FETCH_PRODUCT_SUCCESS, FETCH_PRODUCT_FAIL, ADD_PRODUCT, ADD_PRODUCT_SUCCESS, ADD_PRODUCT_FAIL, FETCH_CATEGORY_START, FETCH_CATEGORY_SUCCESS, FETCH_CATEGORY_FAIL, FETCH_COUNTRY_START, FETCH_COUNTRY_SUCCESS, FETCH_COUNTRY_FAIL, FETCH_TYPE_START, FETCH_TYPE_SUCCESS, FETCH_TYPE_FAIL, FETCH_UNIT_START, FETCH_UNIT_SUCCESS, FETCH_UNIT_FAIL} from '../actions'
 import uuid from 'react-uuid';
 
 export const initialState = {
     products: [],
     categories: [],
     countries: [],
+    types: [],
+    units: [],
     isFetching: false,
     isFetchingCat: false,
     isFetchingCou: false,
+    isFetchingType: false,
+    isFetchingUnit: false,
     error: '',
+
 }
 
 const reducer = (state= initialState, action) => {
@@ -85,6 +90,42 @@ const reducer = (state= initialState, action) => {
                 ...state,
                 isFetchingCou: true,
                 error: "Fetching countries is broken..."
+            })
+        case(FETCH_TYPE_START):
+            return({
+                ...state,
+                isFetchingType: true,
+                error: ''
+            })
+        case(FETCH_TYPE_SUCCESS):
+            return({
+                ...state,
+                types: action.payload,
+                isFetchingType: false
+            })
+        case(FETCH_TYPE_FAIL):
+            return({
+                ...state,
+                isFetchingType: true,
+                error: "Fetching types is broken..."
+            })
+        case(FETCH_UNIT_START):
+            return({
+                ...state,
+                isFetchingUnit: true,
+                error: ''
+            })
+        case(FETCH_UNIT_SUCCESS):
+            return({
+                ...state,
+                units: action.payload,
+                isFetchingUnit: false
+            })
+        case(FETCH_UNIT_FAIL):
+            return({
+                ...state,
+                isFetchingUnit: true,
+                error: "Fetching types is broken..."
             })
         default:
             return state;
