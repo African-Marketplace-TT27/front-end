@@ -158,6 +158,7 @@ tr img {
   .seller-dashboard {
     flex-direction: row;
   }
+  
   .product-description {
     display: table-cell;
   }
