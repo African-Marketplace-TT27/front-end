@@ -121,8 +121,11 @@ const EditItem = ({product, addProduct, categories, isFetchingCat, getCategory, 
     const [apiValues, setAPIValues] = useState(initialAPIValues)
     const handleClose = () => {
         setShow(false);  
-        setFormValues(initialFormValues)};
+        // setFormValues(initialFormValues)
+    };
     const handleChange = e => {
+        console.log(e.target.value)
+        console.log(e.target)
         setFormValues({
             ...formValues,
             [e.target.name]:e.target.value
@@ -170,6 +173,7 @@ const EditItem = ({product, addProduct, categories, isFetchingCat, getCategory, 
             getCountry();
             getType();
             getUnit();
+            setFormValues(product)
         }, []); // eslint-disable-line react-hooks/exhaustive-deps
     
         if(isFetchingCat){
