@@ -4,8 +4,7 @@ import styled from 'styled-components'
 import { connect } from 'react-redux';
 
 // components
-import { addProductError, getCategory, getCountry } from '../actions';
-
+import { addProduct, addProductError, getCategory, getCountry, getType, getUnit } from '../actions';
 
 //styled components
 const SmallButton = styled.button`
@@ -20,30 +19,24 @@ const SmallButton = styled.button`
     border: ${props => props.theme.smButtonBorder};
     padding: ${props => props.theme.smButtonPadding};
 `
-const FormHeader = styled.h1`
+const FormHeader = styled.div`
     color: ${props => props.theme.secondaryHeaderColor};
     font-weight: ${props => props.theme.secondaryFontWeight};
     font-size: ${props => props.theme.secondaryFontSize};
     line-height: ${props => props.theme.secondaryLineHeight};
     text-align: ${props => props.theme.secondaryTextAlign};
     background-color: white;
-    width: 100%;
 `
 
 const FormHeaderDiv = styled.div`
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
     margin: 30px 0px 20px;
     padding: 0px 40px 0px;
     background-color: white;
-    
 
     h4 {
         background-color: white;
-        display: flex;
-        justify-content: flex-end;
-        width: 100%;
     }
 `
 
@@ -96,32 +89,69 @@ const SuggestedPrice = styled.div`
     line-height: 19px;
     margin-bottom: 10px;
 `
-
-
 const initialFormValues = {
+            prod_name: '',
+            prod_desc: '',
+            price: '',
+            inventory: '',
+            image: "",
+            category_name: "",
+            type_name: "",
+            unit_name: "",
+            // country_name: "",
+}
+
+const initialAPIValues = {
     prod_name: '',
     prod_desc: '',
-    price: 0,
-    inventory: 0,
+    price: '',
+    inventory: '',
     image: "",
-    category_name: "",
-    type_name: "",
-    unit_name: "",
+    category_id: null,
+    type_id: null,
+    unit_id: null,
+    // country_id:"",
 }
 
 
-const EditItem = ({categories, isFetchingCat, getCategory, countries, getCountry, isFetchingCou}) => {
+const EditItem = ({product, addProduct, categories, isFetchingCat, getCategory, countries, getCountry, isFetchingCou, types, getType, isFetchingType, units, getUnit, isFetchingUnit}) => {
     const [show, setShow] = useState(false);
     const handleShow = () => setShow(true);
     const [formValues, setFormValues] = useState(initialFormValues);
+    const [apiValues, setAPIValues] = useState(initialAPIValues)
     const handleClose = () => {
         setShow(false);  
-        setFormValues(initialFormValues)};
+        // setFormValues(initialFormValues)
+    };
     const handleChange = e => {
+        console.log(e.target.value)
+        console.log(e.target)
         setFormValues({
             ...formValues,
             [e.target.name]:e.target.value
         })
+            //HERE WE ARE TRYING TO CHANGE category_name, type_name, unit_name TO BE category_id, type_id, unit_id to be digestable by our API.
+        
+        console.log("1", apiValues)
+        if(e.target.name === "category_name"){
+            console.log("CHECK HERE", e.target)
+            console.log("CHECK HERE NAME", e.target.value)
+            setAPIValues({...apiValues, "category_id": Number(e.target.value)})
+            console.log("2", apiValues)
+        }
+
+        else if(e.target.name === "type_name"){
+            setAPIValues({...apiValues, "type_id": Number(e.target.value)})
+            console.log("3", apiValues)
+        }
+        // else if(e.target.name === "country_name"){
+        //     setAPIValues({...apiValues, "country_id": e.target.value})
+        //     console.log("3", apiValues)
+        // }
+        else if(e.target.name === "unit_name"){
+            setAPIValues({...apiValues, "unit_id": Number(e.target.value)})
+        }
+        else {setAPIValues({...apiValues, [e.target.name]: e.target.value})}
     }
 
     const handleSubmit = e => {
@@ -129,8 +159,11 @@ const EditItem = ({categories, isFetchingCat, getCategory, countries, getCountry
         if(formValues.prod_name === "" || formValues.prod_desc === "") {
             addProductError();
         }else{
-            console.log(formValues);
+            console.log("API Val that we are passing", apiValues)
+            //HERE WE ARE PASSING THE API VALUES
+            addProduct(apiValues);
             setShow(false);
+            setFormValues(initialFormValues);
         }
 
     }
@@ -138,6 +171,9 @@ const EditItem = ({categories, isFetchingCat, getCategory, countries, getCountry
     useEffect(() => {
             getCategory();
             getCountry();
+            getType();
+            getUnit();
+            setFormValues(product)
         }, []); // eslint-disable-line react-hooks/exhaustive-deps
     
         if(isFetchingCat){
@@ -146,16 +182,20 @@ const EditItem = ({categories, isFetchingCat, getCategory, countries, getCountry
         if(isFetchingCou){
             return <h2> Loading Countries...</h2>;
         }
+        if(isFetchingType){
+            return <h2> Loading Types...</h2>;
+        }
+        if(isFetchingUnit){
+            return <h2> Loading Unit...</h2>;
+        }
 
-
-    
 
     return (
         <div>
 
-            <SmallButton  onClick={handleShow}>
-                Add Product
-            </SmallButton>
+            <p  onClick={handleShow}>
+                {product.prod_name}
+            </p>
 
             <Modal
                 show={show}
@@ -163,13 +203,12 @@ const EditItem = ({categories, isFetchingCat, getCategory, countries, getCountry
                 backdrop="static"
                 keyboard={false}
             >
-                
                 <FormHeaderDiv>
+                    <FormHeader>Add Product Details</FormHeader>
                     <h4 onClick={handleClose}>X</h4>
-                    <FormHeader>Edit Product Details</FormHeader>
                 </FormHeaderDiv>
-                
-                <WhiteForm onSubmit={handleSubmit} className = "add-product-form">
+    
+                    <WhiteForm onSubmit={handleSubmit} className = "add-product-form">
                         <FormInput 
                             placeholder="Product Name" 
                             onChange={handleChange}
@@ -191,7 +230,7 @@ const EditItem = ({categories, isFetchingCat, getCategory, countries, getCountry
                             <Form.Group as={Col} controlId="productCategory">
                                 <FormInput as="select" 
                                     onChange={handleChange}
-                                    value={formValues.category_name}
+                                    value={formValues.category_id}
                                     name="category_name"
                                     id="category_name"
                                     >
@@ -199,7 +238,7 @@ const EditItem = ({categories, isFetchingCat, getCategory, countries, getCountry
                                     {
                                         categories.map(category => {
                                             return (
-                                                <option value={category.category_name}>{category.category_name}</option>
+                                                <option value={category.category_id}>{category.category_name}</option>
                                             )
                                         })
                                     }
@@ -208,23 +247,30 @@ const EditItem = ({categories, isFetchingCat, getCategory, countries, getCountry
                             <Form.Group as={Col} controlId="productType">
                                 <FormInput as="select" 
                                     onChange={handleChange}
-                                    value={formValues.type_name}
+                                    value={formValues.type_id}
                                     name="type_name"
                                     id="type_name"
                                     >
                                     <option value="">--Select Type--</option>
-                                    <option value="freshProduct">Fresh Product</option>
+                                    {
+                                        types.map((type)=>{
+                                            return (
+                                                <option value={type.type_id}> {type.type_name}</option>
+                                            )
+                                        })
+                                    }
+                                    {/* <option value="freshProduct">Fresh Product</option>
                                     <option value="dryGoods">Dry Goods</option>
                                     <option value="goat">Goat</option>
-                                    <option value="other">Other</option>
+                                    <option value="other">Other</option> */}
                                 </FormInput>
                             </Form.Group>
                         </Form.Row>
 
-                        <Form.Group controlId="productCountry">
+                        {/* <Form.Group controlId="productCountry">
                             <FormInput as="select"
                             onChange={handleChange}
-                            value={formValues.country_name}
+                            value={formValues.country_id}
                             name="country_name"
                             id="country_name"
                             >
@@ -232,15 +278,15 @@ const EditItem = ({categories, isFetchingCat, getCategory, countries, getCountry
                                 {
                                     countries.map(country => {
                                         return(
-                                            <option value={country.country_name}>{country.country_name}</option>
+                                            <option value={country.country_id}>{country.country_name}</option>
                                         )
                                     })
                                 }
                                 {/* <option>Option 1</option>
                                 <option>Option 2</option>
                                 <option>Option 3</option> */}
-                            </FormInput>
-                        </Form.Group>
+                            {/* </FormInput>
+                        </Form.Group> */}
 
                         <Form.Row>
                             <Form.Group as={Col} controlId="productPrice">
@@ -255,15 +301,22 @@ const EditItem = ({categories, isFetchingCat, getCategory, countries, getCountry
                             <Form.Group as={Col} controlId="productUnitOfMeasure">
                                 <FormInput as="select"
                                 onChange={handleChange}
-                                value={formValues.unit_name}
+                                value={formValues.unit_id}
                                 name="unit_name"
                                 id="unit_name"
                                 >
                                     <option value="">--Unit--</option>
-                                    <option value="kilograms">Kilograms</option>
+                                    {
+                                        units.map((unit)=>{
+                                            return(
+                                                <option value={unit.unit_id}>{unit.unit_name}</option>
+                                            )
+                                        })
+                                    }
+                                    {/* <option value="kilograms">Kilograms</option>
                                     <option value="grams">Grams</option>
                                     <option value="dozen">Dozen</option>
-                                    <option value="liters">Liters</option>
+                                    <option value="liters">Liters</option> */}
                             
                                 </FormInput>
                             </Form.Group>
@@ -291,21 +344,25 @@ const EditItem = ({categories, isFetchingCat, getCategory, countries, getCountry
                             Add New Product
                         </FormButton>
                     </WhiteForm>
-                    
+      
             </Modal>
 
 
         </div>
     )
 }
-
 const mapStateToProps = state => {
     return({
         categories: state.categories,
         isFetchingCat: state.isFetching,
         error: state.error,
         isFetchingCou: state.isFetchingCou,
-        countries: state.countries
+        countries: state.countries,
+        isFetchingType: state.isFetchingType,
+        types: state.types,
+        isFetchingUnit: state.isFetchingUnit,
+        units: state.units,
     })
 }
-export default connect(mapStateToProps, {addProductError, getCategory, getCountry})(EditItem)
+
+export default connect(mapStateToProps, {addProduct, addProductError, getCategory, getCountry, getType, getUnit})(EditItem)

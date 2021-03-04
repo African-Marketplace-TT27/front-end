@@ -1,7 +1,7 @@
 import React from 'react'
 import {useParams, useHistory} from 'react-router-dom'
 import {axiosWithAuth} from '../utility/axiosWIthAuth'
-
+import EditItem from '../components/EditItem'
 const SellerProductCard = (props) => {
    const { product, getProduct } = props;
    const {push} = useHistory();
@@ -19,11 +19,15 @@ const SellerProductCard = (props) => {
             console.log("Oooopsie", err)
         })
    }
+
+   const handleEdit = () => {
+       
+   }
     
    return (
         <tr id={product.prod_id} className="table-bottom-border">
             <td className='product-image'><img src={product.image} alt={product.prod_name} width='200px'/></td>
-            <td>{product.prod_name}</td>
+            <td><EditItem product={product}/> </td>
             <td className='product-description'>{product.prod_desc}</td>
             <td className='product-inventory'>{product.inventory}</td>
             <td className='product-measure'>{product.unit_name}</td>
