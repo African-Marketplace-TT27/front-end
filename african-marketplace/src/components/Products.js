@@ -25,7 +25,7 @@ import { getProduct }  from '../actions';
 
 
 
-const SellerDashboard = ({products, isFetching, getProduct}) => {
+const Products = ({products, isFetching, getProduct}) => {
     useEffect(() => {
         getProduct();
         console.log("USE EFFECT", products)
@@ -65,7 +65,7 @@ const SellerDashboard = ({products, isFetching, getProduct}) => {
                         {
                             products?.map(product => {
                                 return (
-                                    <SellerProductCard key={product.id} product={product} />
+                                    <SellerProductCard key={product.id} product={product} getProduct={getProduct}/>
                                 )
                             })
                         }
@@ -82,4 +82,4 @@ const mapStateToProps = (state) => {
         error: state.error
     })
 }
-export default connect(mapStateToProps, {getProduct})(SellerDashboard);
+export default connect(mapStateToProps, {getProduct})(Products);

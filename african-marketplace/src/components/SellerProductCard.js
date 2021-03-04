@@ -3,19 +3,21 @@ import {useParams, useHistory} from 'react-router-dom'
 import {axiosWithAuth} from '../utility/axiosWIthAuth'
 
 const SellerProductCard = (props) => {
-   const { product } = props
-   const params = useParams();
+   const { product, getProduct } = props;
    const {push} = useHistory();
-   
+   console.log("TEST", product.prod_id)
 
-   const deleteProduct =()=>{
+
+   const deleteProduct =(goat)=>{
         axiosWithAuth()
-        .delete(`/products/${params.id}`)
+        .delete(`/products/${product.prod_id}`, product)
         .then((res)=>{
-            console.log("HERE IS THE ID", params)
-            console.log("sellerProductCard delete", res)
+            getProduct(product)
+            // getProduct(product.filter((item)=>item.id !== goat.id))
         })
-        .catch(()=>{})
+        .catch((err)=>{
+            console.log("Oooopsie", err)
+        })
    }
     
    return (
