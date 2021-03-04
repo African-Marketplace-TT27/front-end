@@ -107,9 +107,9 @@ const initialAPIValues = {
     price: '',
     inventory: '',
     image: "",
-    category_id: "",
-    type_id: "",
-    unit_id: "",
+    category_id: null,
+    type_id: null,
+    unit_id: null,
     // country_id:"",
 }
 
@@ -133,12 +133,12 @@ const AddProduct = ({addProduct, categories, isFetchingCat, getCategory, countri
         if(e.target.name === "category_name"){
             console.log("CHECK HERE", e.target)
             console.log("CHECK HERE NAME", e.target.value)
-            setAPIValues({...apiValues, "category_id": e.target.value})
+            setAPIValues({...apiValues, "category_id": Number(e.target.value)})
             console.log("2", apiValues)
         }
 
         else if(e.target.name === "type_name"){
-            setAPIValues({...apiValues, "type_id": e.target.value})
+            setAPIValues({...apiValues, "type_id": Number(e.target.value)})
             console.log("3", apiValues)
         }
         // else if(e.target.name === "country_name"){
@@ -146,7 +146,7 @@ const AddProduct = ({addProduct, categories, isFetchingCat, getCategory, countri
         //     console.log("3", apiValues)
         // }
         else if(e.target.name === "unit_name"){
-            setAPIValues({...apiValues, "unit_id": e.target.value})
+            setAPIValues({...apiValues, "unit_id": Number(e.target.value)})
         }
         else {setAPIValues({...apiValues, [e.target.name]: e.target.value})}
     }

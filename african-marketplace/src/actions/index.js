@@ -45,7 +45,7 @@ export const addProduct = (newProduct) => {
         axiosWithAuth() 
             .post(`/products`, newProduct)
             .then(res => {
-                console.log("Testing addProduct", res)
+                console.log("Testing addProduct", res.data)
                 dispatch({type:ADD_PRODUCT_SUCCESS, payload:res.data});
             })
             .catch(err => {
