@@ -28,8 +28,9 @@ import { getProduct }  from '../actions';
 const SellerDashboard = ({products, isFetching, getProduct}) => {
     useEffect(() => {
         getProduct();
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
+        console.log("USE EFFECT", products)
+        
+    }, [JSON.stringify(products)]); // eslint-disable-line react-hooks/exhaustive-deps
     if(isFetching){
         return <h2> Loading Products...</h2>;
     }
@@ -62,7 +63,7 @@ const SellerDashboard = ({products, isFetching, getProduct}) => {
                     </thead>
                     <tbody>
                         {
-                            products.map(product => {
+                            products?.map(product => {
                                 return (
                                     <SellerProductCard key={product.id} product={product} />
                                 )

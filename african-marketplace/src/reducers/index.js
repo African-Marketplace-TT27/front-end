@@ -39,14 +39,14 @@ const reducer = (state= initialState, action) => {
         case(ADD_PRODUCT):
             return({
                 ...state,
-                products: [state.products],
+                products: [state.products], //[action.payload],
                 isFetching: true,
                 id: uuid()
             })
         case(ADD_PRODUCT_SUCCESS):
             return({
                 ...state,
-                products: action.payload,
+                products: [...state.products, action.payload],//action.payload //state.products.concat(action.payload),
                 isFetching: false
             })
         case(ADD_PRODUCT_FAIL):
