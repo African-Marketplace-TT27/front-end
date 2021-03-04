@@ -16,6 +16,14 @@ export const FETCH_COUNTRY_START = 'FETCH_COUNTRY_START';
 export const FETCH_COUNTRY_SUCCESS = 'FETCH_COUNTRY_SUCCESS';
 export const FETCH_COUNTRY_FAIL = 'FETCH_COUNTRY_FAIL';
 
+export const FETCH_TYPE_START = 'FETCH_TYPE_START';
+export const FETCH_TYPE_SUCCESS = 'FETCH_TYPE_SUCCESS';
+export const FETCH_TYPE_FAIL = 'FETCH_TYPE_FAIL';
+
+export const FETCH_UNIT_START = 'FETCH_UNIT_START';
+export const FETCH_UNIT_SUCCESS = 'FETCH_UNIT_SUCCESS';
+export const FETCH_UNIT_FAIL = 'FETCH_UNIT_FAIL';
+
 export const getProduct = () => {
     return (dispatch => {
         dispatch({type:FETCH_PRODUCT_START})
@@ -79,6 +87,36 @@ export const getCountry = () => {
             })
             .catch(err => {
                 dispatch({type: FETCH_COUNTRY_FAIL, payload: err.Response.data});
+            });
+    })
+};
+
+export const getType = () => {
+    return (dispatch => {
+        dispatch({type:FETCH_TYPE_START})
+        axiosWithAuth()
+            .get(`/types`)
+            .then(res => {
+                dispatch({type: FETCH_TYPE_SUCCESS, payload: res.data});
+                console.log (res.data)
+            })
+            .catch(err => {
+                dispatch({type: FETCH_TYPE_FAIL, payload: err.Response.data});
+            });
+    })
+};
+
+export const getUnit = () => {
+    return (dispatch => {
+        dispatch({type:FETCH_UNIT_START})
+        axiosWithAuth()
+            .get(`/units`)
+            .then(res => {
+                dispatch({type: FETCH_UNIT_SUCCESS, payload: res.data});
+                console.log (res.data)
+            })
+            .catch(err => {
+                dispatch({type: FETCH_UNIT_FAIL, payload: err.Response.data});
             });
     })
 };

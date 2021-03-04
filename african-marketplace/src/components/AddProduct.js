@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { connect } from 'react-redux';
 
 // components
-import { addProduct, addProductError, getCategory, getCountry } from '../actions';
+import { addProduct, addProductError, getCategory, getCountry, getType, getUnit } from '../actions';
 
 //styled components
 const SmallButton = styled.button`
@@ -92,18 +92,33 @@ const SuggestedPrice = styled.div`
 const initialFormValues = {
             prod_name: '',
             prod_desc: '',
-            price: 0,
-            inventory: 0,
+            price: '',
+            inventory: '',
             image: "",
             category_name: "",
             type_name: "",
             unit_name: "",
+            // country_name: "",
 }
 
-const AddProduct = ({addProduct, categories, isFetchingCat, getCategory, countries, getCountry, isFetchingCou}) => {
+const initialAPIValues = {
+    prod_name: '',
+    prod_desc: '',
+    price: '',
+    inventory: '',
+    image: "",
+    category_id: "",
+    type_id: "",
+    unit_id: "",
+    // country_id:"",
+}
+
+
+const AddProduct = ({addProduct, categories, isFetchingCat, getCategory, countries, getCountry, isFetchingCou, types, getType, isFetchingType, units, getUnit, isFetchingUnit}) => {
     const [show, setShow] = useState(false);
     const handleShow = () => setShow(true);
     const [formValues, setFormValues] = useState(initialFormValues);
+    const [apiValues, setAPIValues] = useState(initialAPIValues)
     const handleClose = () => {
         setShow(false);  
         setFormValues(initialFormValues)};
@@ -112,6 +127,28 @@ const AddProduct = ({addProduct, categories, isFetchingCat, getCategory, countri
             ...formValues,
             [e.target.name]:e.target.value
         })
+            //HERE WE ARE TRYING TO CHANGE category_name, type_name, unit_name TO BE category_id, type_id, unit_id to be digestable by our API.
+        
+        console.log("1", apiValues)
+        if(e.target.name === "category_name"){
+            console.log("CHECK HERE", e.target)
+            console.log("CHECK HERE NAME", e.target.value)
+            setAPIValues({...apiValues, "category_id": e.target.value})
+            console.log("2", apiValues)
+        }
+
+        else if(e.target.name === "type_name"){
+            setAPIValues({...apiValues, "type_id": e.target.value})
+            console.log("3", apiValues)
+        }
+        // else if(e.target.name === "country_name"){
+        //     setAPIValues({...apiValues, "country_id": e.target.value})
+        //     console.log("3", apiValues)
+        // }
+        else if(e.target.name === "unit_name"){
+            setAPIValues({...apiValues, "unit_id": e.target.value})
+        }
+        else {setAPIValues({...apiValues, [e.target.name]: e.target.value})}
     }
 
     const handleSubmit = e => {
@@ -119,8 +156,9 @@ const AddProduct = ({addProduct, categories, isFetchingCat, getCategory, countri
         if(formValues.prod_name === "" || formValues.prod_desc === "") {
             addProductError();
         }else{
-            console.log(formValues);
-            addProduct(formValues);
+            console.log("API Val that we are passing", apiValues)
+            //HERE WE ARE PASSING THE API VALUES
+            addProduct(apiValues);
             setShow(false);
             setFormValues(initialFormValues);
         }
@@ -130,6 +168,8 @@ const AddProduct = ({addProduct, categories, isFetchingCat, getCategory, countri
     useEffect(() => {
             getCategory();
             getCountry();
+            getType();
+            getUnit();
         }, []); // eslint-disable-line react-hooks/exhaustive-deps
     
         if(isFetchingCat){
@@ -137,6 +177,12 @@ const AddProduct = ({addProduct, categories, isFetchingCat, getCategory, countri
         }
         if(isFetchingCou){
             return <h2> Loading Countries...</h2>;
+        }
+        if(isFetchingType){
+            return <h2> Loading Types...</h2>;
+        }
+        if(isFetchingUnit){
+            return <h2> Loading Unit...</h2>;
         }
 
 
@@ -180,7 +226,7 @@ const AddProduct = ({addProduct, categories, isFetchingCat, getCategory, countri
                             <Form.Group as={Col} controlId="productCategory">
                                 <FormInput as="select" 
                                     onChange={handleChange}
-                                    value={formValues.category_name}
+                                    value={formValues.category_id}
                                     name="category_name"
                                     id="category_name"
                                     >
@@ -188,7 +234,7 @@ const AddProduct = ({addProduct, categories, isFetchingCat, getCategory, countri
                                     {
                                         categories.map(category => {
                                             return (
-                                                <option value={category.category_name}>{category.category_name}</option>
+                                                <option value={category.category_id}>{category.category_name}</option>
                                             )
                                         })
                                     }
@@ -197,23 +243,30 @@ const AddProduct = ({addProduct, categories, isFetchingCat, getCategory, countri
                             <Form.Group as={Col} controlId="productType">
                                 <FormInput as="select" 
                                     onChange={handleChange}
-                                    value={formValues.type_name}
+                                    value={formValues.type_id}
                                     name="type_name"
                                     id="type_name"
                                     >
                                     <option value="">--Select Type--</option>
-                                    <option value="freshProduct">Fresh Product</option>
+                                    {
+                                        types.map((type)=>{
+                                            return (
+                                                <option value={type.type_id}> {type.type_name}</option>
+                                            )
+                                        })
+                                    }
+                                    {/* <option value="freshProduct">Fresh Product</option>
                                     <option value="dryGoods">Dry Goods</option>
                                     <option value="goat">Goat</option>
-                                    <option value="other">Other</option>
+                                    <option value="other">Other</option> */}
                                 </FormInput>
                             </Form.Group>
                         </Form.Row>
 
-                        <Form.Group controlId="productCountry">
+                        {/* <Form.Group controlId="productCountry">
                             <FormInput as="select"
                             onChange={handleChange}
-                            value={formValues.country_name}
+                            value={formValues.country_id}
                             name="country_name"
                             id="country_name"
                             >
@@ -221,15 +274,15 @@ const AddProduct = ({addProduct, categories, isFetchingCat, getCategory, countri
                                 {
                                     countries.map(country => {
                                         return(
-                                            <option value={country.country_name}>{country.country_name}</option>
+                                            <option value={country.country_id}>{country.country_name}</option>
                                         )
                                     })
                                 }
                                 {/* <option>Option 1</option>
                                 <option>Option 2</option>
                                 <option>Option 3</option> */}
-                            </FormInput>
-                        </Form.Group>
+                            {/* </FormInput>
+                        </Form.Group> */}
 
                         <Form.Row>
                             <Form.Group as={Col} controlId="productPrice">
@@ -244,15 +297,22 @@ const AddProduct = ({addProduct, categories, isFetchingCat, getCategory, countri
                             <Form.Group as={Col} controlId="productUnitOfMeasure">
                                 <FormInput as="select"
                                 onChange={handleChange}
-                                value={formValues.unit_name}
+                                value={formValues.unit_id}
                                 name="unit_name"
                                 id="unit_name"
                                 >
                                     <option value="">--Unit--</option>
-                                    <option value="kilograms">Kilograms</option>
+                                    {
+                                        units.map((unit)=>{
+                                            return(
+                                                <option value={unit.unit_id}>{unit.unit_name}</option>
+                                            )
+                                        })
+                                    }
+                                    {/* <option value="kilograms">Kilograms</option>
                                     <option value="grams">Grams</option>
                                     <option value="dozen">Dozen</option>
-                                    <option value="liters">Liters</option>
+                                    <option value="liters">Liters</option> */}
                             
                                 </FormInput>
                             </Form.Group>
@@ -293,8 +353,12 @@ const mapStateToProps = state => {
         isFetchingCat: state.isFetching,
         error: state.error,
         isFetchingCou: state.isFetchingCou,
-        countries: state.countries
+        countries: state.countries,
+        isFetchingType: state.isFetchingType,
+        types: state.types,
+        isFetchingUnit: state.isFetchingUnit,
+        units: state.units,
     })
 }
 
-export default connect(mapStateToProps, {addProduct, addProductError, getCategory, getCountry})(AddProduct)
+export default connect(mapStateToProps, {addProduct, addProductError, getCategory, getCountry, getType, getUnit})(AddProduct)
