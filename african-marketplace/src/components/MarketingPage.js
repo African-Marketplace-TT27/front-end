@@ -64,7 +64,7 @@ setSearch({...search, [e.target.name]: e.target.value})
                 <h2>Available Items</h2>
                 <SellerItem key={sellerItems.id} sellerItems={sellerItems}></SellerItem>
             </ItemsContainer>
-            <Footer>
+            <Footer className='footer'>
                 <NavLogo className="footerLogo">
                     <img src={logoWhite} alt="Sauti Logo"/>
                 </NavLogo>
@@ -140,7 +140,7 @@ const ItemsContainer= styled.div`
     //Footer
 const Footer = styled.div`
     border: 1px solid green;
-    background: #AD7C82;
+  
 ;
     display:flex;
     height: 50px;
