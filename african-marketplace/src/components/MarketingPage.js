@@ -23,15 +23,23 @@ export default function MarketingPage() {
 
 useEffect(()=>{
     axiosWithAuth()
-    .get('/')
+    .get('/products')
     .then((resp)=>{
-        console.log(resp.data.data)
-        setSellerItems(resp.data.data)
+        console.log(resp.data)
+        setSellerItems(resp.data)
     })
     .catch((err)=>{
         console.log(err)
     })
 }, [])
+
+// useEffect(()=>{
+//     axiosWithAuth()
+//     .get('/register')
+//     .then((resp)=>{
+//         console.log(resp)
+//     })
+// })
 
 const updateSearch=(e)=>{
 setSearch({...search, [e.target.name]: e.target.value})

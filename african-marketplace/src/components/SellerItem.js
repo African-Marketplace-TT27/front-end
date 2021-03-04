@@ -20,11 +20,11 @@ export default function SellerItem(props) {
                             <img src={sellerImg} alt="Bell Peppers" />
                             <div className="sellerItemDetails">
                                 <NameNpriceCont className="nameNprice">
-                                    <h6>{item.prodName ? item.prodName : "Bell Peppers"}</h6>
+                                    <h6>{item.prod_name ? item.prod_name : "Bell Peppers"}</h6>
                                     <h6 className="price">{item.price ? item.price : "$99.99"}</h6>
                                 </NameNpriceCont>
                                 <div>
-                                    <p>{item.prodDesc ? item.prodDesc : "Blah Blah Blah Blah Blah" }</p>
+                                    <p>{item.prod_desc ? item.prod_desc : "Blah Blah Blah Blah Blah" }</p>
                                 </div>
                                 <Country>
                                     
