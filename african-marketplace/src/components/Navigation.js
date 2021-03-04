@@ -29,13 +29,7 @@ const SideContainer = styled.div`
         background-color: white;
         margin-top: 2%;
     }
-    // .footer{
-    //     position: fixed;
-    //     left: 0;
-    //     bottom: 0;
-    //     padding: 0.8rem;
-    //     background-color: white;
-    // }
+
     .link{
         text-decoration: none;
         color: #C87D55;
@@ -55,10 +49,7 @@ const SideContainer = styled.div`
         background: #AD7C82;
         color: #FFFFFF;
     }
-    @media (min-width: 768px){
-        
-    }
-
+   
     @media (min-width: 1024px){
         width: 15vw;
         align-items: flex-start;
@@ -68,7 +59,8 @@ const SideContainer = styled.div`
         height: 100vh;
 
         .nav-header{
-            margin-top: 5%;
+            margin-top: 1.5rem;;
+            width: 15vw;
         }
         .side-nav{
             display: flex;
