@@ -11,25 +11,26 @@ const ReportsContainer = styled.div`
     display: flex;
     flex-direction: column;
     
-    .content{
-        text-align: center;
-        display: flex;
-        justify-content: center;
-    }
     @media (min-width: 1024px){
         flex-direction: row;
+        .content{
+            display: flex;
+            flex-direction: column;
+            width:100vw;
+            margin-left: .5rem;
+        }
     }
 `
 const Reports = () => {
     return (
         <ReportsContainer>
-        <div>
             <Navigation /> 
-        </div>
+            <NavRight />
         <div className="content">
-            <h1>Report Details Coming Soon!</h1>
+            <div>
+                <h1>Report Details Coming Soon!</h1>
+            </div>
         </div>
-        <NavRight />
         </ReportsContainer>
     )
 }

@@ -8,29 +8,30 @@ import NavRight from './NavRight';
 import styled from 'styled-components';
 
 const OrderContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    
+display: flex;
+flex-direction: column;
+
+@media (min-width: 1024px){
+    flex-direction: row;
     .content{
-        text-align: center;
         display: flex;
-        justify-content: center;
+        flex-direction: column;
+        width:100vw;
+        margin-left: .5rem;
     }
-    @media (min-width: 1024px){
-        flex-direction: row;
-    }
+}
 `
 
 const Orders = () => {
     return (
         <OrderContainer>
-        <div>
             <Navigation />
-        </div>
+            <NavRight />
         <div className="content">
-            <h1>Order Details Coming Soon!</h1>
+            <div>
+                <h1>Order Details Coming Soon!</h1>
+            </div>
         </div>
-        <NavRight />
         </OrderContainer>
     )
 }

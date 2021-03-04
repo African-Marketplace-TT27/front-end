@@ -8,6 +8,8 @@ const RightProPic = styled.div `
 
    @media (min-width: 1024px){
        display: flex;
+    //    width: 100vh;
+
 
     .nav-right {
         // display: flex;
@@ -25,29 +27,30 @@ const RightProPic = styled.div `
     ul{
         list-style: none;
         background: #fffbf6;
-        margin-right: -1.4rem;
+        margin-right: 1rem;
         border-radius: 5px;
+        width: 120px;
     }
 
     .fas{
         display: flex;
         align-items: center;
-        justify-content: center;
-        margin-left: 2rem;
-        margin-top: .75rem;
+        // justify-content: center;
+        margin-left: .5rem;
+        margin-top: .70rem;
         position: absolute;
         // top: 60px;
     }
     li{
-        margin-left: 5px;
+        margin-left: 1.5rem;
         cursor: pointer;
-        font-size: 14px;
-        position: relative;
-        right: 60px;
+        font-size: 1.8;
+        // position: relative;
+        // right: 10px;
         color: #783200;
         text-align: left;
         padding: .5rem;
-        width: 143px;
+        width: 100px;
     }
 
     .nav-name:hover{
@@ -58,18 +61,20 @@ const RightProPic = styled.div `
     #right-side-nav {
         display: none;
         position: absolute;
+        right: 1rem;
         border-radius: 5px;
         box-shadow: 0px 2px 3px rgba(0,0,0,0.25);
-        padding: 3px 55px;
-        padding-right: 0px;
-        padding-left: 60px
+        // // padding: 3px 55px;
+        // padding-right: 0px;
+        // padding-left: 60px
+        
     }
 
     #right-side-nav:before{
         content: "";
         position: absolute;
         top: -20px;
-        right: 54px; 
+        right: 18px; 
         border: 10px solid;
         border-color: transparent transparent #fff transparent;
        
