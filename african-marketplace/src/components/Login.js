@@ -80,7 +80,7 @@ const Login = () => {
         
         localStorage.setItem('token', res.data.token);
         console.log(res.data.token)
-        history.push('/SellerDashboard');
+        history.push('/products');
       })
       .catch((err) => {
         console.log(err);
