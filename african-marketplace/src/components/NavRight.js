@@ -16,7 +16,7 @@ const RightProPic = styled.div `
         position: absolute;
         right: 0;
         margin-right: 1rem;
-
+    }
     .profilePic{
         border-radius: 50px 50px;
         border: solid 2px #AD7C82;
@@ -64,10 +64,6 @@ const RightProPic = styled.div `
         right: 1rem;
         border-radius: 5px;
         box-shadow: 0px 2px 3px rgba(0,0,0,0.25);
-        // // padding: 3px 55px;
-        // padding-right: 0px;
-        // padding-left: 60px
-        
     }
 
     #right-side-nav:before{

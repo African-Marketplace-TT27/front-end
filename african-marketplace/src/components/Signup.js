@@ -55,6 +55,9 @@ const FormButton = styled.button`
   border: ${props => props.theme.buttonBorder};
   width: ${props => props.theme.buttonWidth};
   margin-bottom: 20px;
+    :disabled{
+      background:grey
+    }
 `
 const TermsAgree = styled.input` 
   width: 18px;
@@ -85,6 +88,7 @@ const initialSUFormValues = {
   password: '',
   pwconfirm: '',
   country_id: 0,
+  terms:''
 };
 
 const initialSUFormErrors = {
@@ -93,13 +97,19 @@ const initialSUFormErrors = {
   password: '',
   pwconfirm: '',
   country_id: 0,
+  terms:''
 };
 
 const Signup = () => {
   const [formValues, setFormValues] = useState(initialSUFormValues);
   const [formErrors, setFormErrors] = useState(initialSUFormErrors);
+  const [Disabled, setDisabled] = useState(true);
 
-
+  useEffect(() => {
+    Schema.isValid(formValues).then((valid) => {
+      setDisabled(!valid);
+    });
+  }, [formValues]);
 
   const handleChange = (evt) => {
     const { name, value } = evt.target;
@@ -114,7 +124,7 @@ const Signup = () => {
         setFormErrors({ ...formErrors, [name]: err.errors[0] });
       });
 
-    setFormValues({ ...formValues, [name]: value });
+    setFormValues({ ...formValues, [name]: evt.target.type === "checkbox" ? evt.target.checked : evt.target.value });
     
   };
 
@@ -196,10 +206,14 @@ const Signup = () => {
               <p>{formErrors.password}</p>
               <p>{formErrors.pwconfirm}</p>
           <Terms>
-            <TermsAgree type="checkbox" />
+            <TermsAgree type="checkbox"
+            onChange={handleChange}
+            name="terms"
+            value={formValues.terms}
+            />
             <TermsAgreeLabel>Agree to Terms and Conditions</TermsAgreeLabel>
           </Terms>
-          <FormButton type="submit">
+          <FormButton type="submit"  disabled={Disabled}>
             Sign Up
           </FormButton>
        <p>              <span>Already have an account? | </span>
