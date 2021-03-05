@@ -85,16 +85,16 @@ const Navigation = () => {
         <div className="navigation">
             <SideContainer>
                 <header className="nav-header">
-                    <div className="nav-logo">
+                <div className="nav-logo" style={{cursor: "pointer"}}>
                         <img src={Sauti} alt='Sauti Logo' className="nav-logo" onClick={() => {push('/')}} />
                     </div>
                 </header> 
                 <div className="side-nav-container">
                     <div className="side-nav">
                         <div className=" side-nav dash-links"> 
-                            <Link className="link" to="/SellerDashboard">Home</Link>
+                            <Link className="link" to="/products">Home</Link>
                             <Link className="link" to="/Orders">Orders</Link>
-                            <Link className="link" to="/SellerDashboard">Products</Link>
+                            <Link className="link" to="/products">Products</Link>
                             <Link className="link" to="/Reports">Reports</Link>  
                         </div> 
                     </div>

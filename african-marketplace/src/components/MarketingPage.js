@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 import styled from 'styled-components'
 
 //images
-import logo from '../images/Sauti.png'
+import logo from '../images/Sauti..svg'
 import cart from '../images/ShoppingCartImg.png'
 import heroImg from '../images/Rectangle 33.png'
 import logoWhite from '../images/Sauti.white.png'
@@ -33,13 +33,13 @@ useEffect(()=>{
     })
 }, [])
 
-// useEffect(()=>{
-//     axiosWithAuth()
-//     .get('/register')
-//     .then((resp)=>{
-//         console.log(resp)
-//     })
-// })
+useEffect(()=>{
+    axiosWithAuth()
+    .get('/auth/login')
+    .then((resp)=>{
+        console.log(resp)
+    })
+})
 
 const updateSearch=(e)=>{
 setSearch({...search, [e.target.name]: e.target.value})
@@ -52,7 +52,7 @@ setSearch({...search, [e.target.name]: e.target.value})
     return (
         <div>
             <Header>
-                <NavLogo className="logo">
+                <NavLogo className="logo" style={{cursor: "pointer"}}>
                     <img src={logo} alt="Sauti Logo"></img>
                 </NavLogo>
                 <NavBar className="navBar">
@@ -78,7 +78,7 @@ setSearch({...search, [e.target.name]: e.target.value})
                 </NavLogo>
                 <FooterLinks className="footerLinks">
                 <div><Link className="link-footer" to='/about'>About</Link></div>
-                <div><Link className="link-footer" to='/register'>Sell</Link></div>
+                <div><Link className="link-footer" to='/Signup'>Sell</Link></div>
                 <div><Link className="link-footer" to='/help'>Help</Link></div>
                 </FooterLinks>
 
