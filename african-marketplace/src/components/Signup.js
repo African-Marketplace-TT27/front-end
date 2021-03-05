@@ -150,10 +150,6 @@ const Signup = () => {
       });
   };
 
-
-
-
-
   return (
     <SignUp>
       <img className='form-logo' src={Logo} alt="Sauti logo" />
