@@ -11,13 +11,15 @@ export default Yup.object().shape({
     .string()
     .required("Please enter your password")
     .min(4, 'password must be at least 4 characters long'),
-    pwconfirm: Yup
-    .string()
-    .required("Please confirm your password")
-    .when("password", {
-      is: password => (password && password.length > 0 ? true : false),
-      then: Yup.string().oneOf([Yup.ref("password")], "Password doesn't match")
-    }),
-    country_id: Yup
-    .string()
+  pwconfirm: Yup.string().when("password", {
+    is: val => (val && val.length > 0 ? true : false),
+    then: Yup.string().oneOf(
+      [Yup.ref("password")],
+      "Both password need to be the same"
+    )
+  }),
+  country_id: Yup
+    .string(),
+  terms: Yup.boolean().oneOf([true], "Please Check Terms of Service"),
+
 });
