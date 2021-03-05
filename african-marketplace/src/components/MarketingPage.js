@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 //images
 import logo from '../images/Sauti..svg'
-import cart from '../images/ShoppingCartImg.png'
+import cart from '../images/Cart.svg'
 import heroImg from '../images/Rectangle 33.png'
 import logoWhite from '../images/Sauti.white.png'
 
@@ -60,8 +60,8 @@ setSearch({...search, [e.target.name]: e.target.value})
                     <input label="Search Items" type="text" placeholder="Search" value={search.search} onChange={updateSearch}></input>
                     </div>
                     <div className="loginLinkCont">
-                        <img width="65px" src={cart} alt="shopping cart icon"/>
-                        <Link className="loginLink" to='/login'>Login</Link>
+                        <img src={cart} alt="shopping cart icon"/>
+                        <Link className="loginLink" to='/login'> Login</Link>
                     </div>
                 </NavBar>
             </Header>
@@ -92,6 +92,7 @@ const Header = styled.header`
     /* border: 3px solid black; */
     width: 100%;
     display:flex;
+    padding: 1% 0%;
     `
 const NavLogo = styled.div`
     /* border: 3px solid green; */
