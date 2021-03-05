@@ -4,7 +4,8 @@ import styled from 'styled-components'
 import { connect } from 'react-redux';
 
 // components
-import { addProduct, addProductError, getCategory, getCountry, getType, getUnit } from '../actions';
+import { addProduct, getProduct, addProductError, getCategory, getCountry, getType, getUnit } from '../actions';
+import { axiosWithAuth } from '../utility/axiosWIthAuth';
 
 //styled components
 const SmallButton = styled.button`
@@ -102,7 +103,7 @@ const initialFormValues = {
 }
 
 const initialAPIValues = {
-    prod_name: '',
+    prod_name: 'something random',
     prod_desc: '',
     price: '',
     inventory: '',
@@ -117,63 +118,71 @@ const initialAPIValues = {
 const EditItem = ({product, addProduct, categories, isFetchingCat, getCategory, countries, getCountry, isFetchingCou, types, getType, isFetchingType, units, getUnit, isFetchingUnit}) => {
     const [show, setShow] = useState(false);
     const handleShow = () => setShow(true);
-    const [formValues, setFormValues] = useState(initialFormValues);
+    const [formValues, setFormValues] = useState(product);
     const [apiValues, setAPIValues] = useState(initialAPIValues)
+    console.log('product api val', apiValues)
     const handleClose = () => {
         setShow(false);  
         // setFormValues(initialFormValues)
     };
     const handleChange = e => {
-        console.log(e.target.value)
-        console.log(e.target)
+        console.log(formValues);
         setFormValues({
             ...formValues,
             [e.target.name]:e.target.value
         })
             //HERE WE ARE TRYING TO CHANGE category_name, type_name, unit_name TO BE category_id, type_id, unit_id to be digestable by our API.
         
-        console.log("1", apiValues)
-        if(e.target.name === "category_name"){
-            console.log("CHECK HERE", e.target)
-            console.log("CHECK HERE NAME", e.target.value)
+        if(e.target.name === "category_id"){
             setAPIValues({...apiValues, "category_id": Number(e.target.value)})
-            console.log("2", apiValues)
+            
         }
 
-        else if(e.target.name === "type_name"){
+        else if(e.target.name === "type_id"){
             setAPIValues({...apiValues, "type_id": Number(e.target.value)})
-            console.log("3", apiValues)
+            
         }
         // else if(e.target.name === "country_name"){
         //     setAPIValues({...apiValues, "country_id": e.target.value})
         //     console.log("3", apiValues)
         // }
-        else if(e.target.name === "unit_name"){
+        else if(e.target.name === "unit_id"){
             setAPIValues({...apiValues, "unit_id": Number(e.target.value)})
         }
         else {setAPIValues({...apiValues, [e.target.name]: e.target.value})}
     }
-
+    
     const handleSubmit = e => {
         e.preventDefault();
-        if(formValues.prod_name === "" || formValues.prod_desc === "") {
-            addProductError();
-        }else{
-            console.log("API Val that we are passing", apiValues)
+        setAPIValues(formValues);
+            console.log('apiValues in edititem!!!!',apiValues)
             //HERE WE ARE PASSING THE API VALUES
             addProduct(apiValues);
+            deleteProduct();
             setShow(false);
             setFormValues(initialFormValues);
-        }
+        
 
     }
-
+    const deleteProduct =()=>{
+        axiosWithAuth()
+        .delete(`/products/${product.prod_id}`, product)
+        .then((res)=>{
+            getProduct(product)
+            // getProduct(product.filter((item)=>item.id !== goat.id))
+        })
+        .catch((err)=>{
+            console.log("Oooopsie", err)
+        })
+   }
     useEffect(() => {
             getCategory();
             getCountry();
             getType();
             getUnit();
-            setFormValues(product)
+
+            console.log('PRODUCT IN EDITITEM !!!', product)
+            
         }, []); // eslint-disable-line react-hooks/exhaustive-deps
     
         if(isFetchingCat){
@@ -191,7 +200,7 @@ const EditItem = ({product, addProduct, categories, isFetchingCat, getCategory, 
 
 
     return (
-        <div>
+        <div className = 'edit-form'>
 
             <p  onClick={handleShow}>
                 {product.prod_name}
@@ -204,7 +213,7 @@ const EditItem = ({product, addProduct, categories, isFetchingCat, getCategory, 
                 keyboard={false}
             >
                 <FormHeaderDiv>
-                    <FormHeader>Add Product Details</FormHeader>
+                    <FormHeader>Edit Product Details</FormHeader>
                     <h4 onClick={handleClose}>X</h4>
                 </FormHeaderDiv>
     
@@ -231,10 +240,10 @@ const EditItem = ({product, addProduct, categories, isFetchingCat, getCategory, 
                                 <FormInput as="select" 
                                     onChange={handleChange}
                                     value={formValues.category_id}
-                                    name="category_name"
+                                    name="category_id"
                                     id="category_name"
                                     >
-                                    <option value="">--Select Category--</option>
+                                    <option value={formValues.category_name}>--Select Category--</option>
                                     {
                                         categories.map(category => {
                                             return (
@@ -248,7 +257,7 @@ const EditItem = ({product, addProduct, categories, isFetchingCat, getCategory, 
                                 <FormInput as="select" 
                                     onChange={handleChange}
                                     value={formValues.type_id}
-                                    name="type_name"
+                                    name="type_id"
                                     id="type_name"
                                     >
                                     <option value="">--Select Type--</option>
@@ -302,7 +311,7 @@ const EditItem = ({product, addProduct, categories, isFetchingCat, getCategory, 
                                 <FormInput as="select"
                                 onChange={handleChange}
                                 value={formValues.unit_id}
-                                name="unit_name"
+                                name="unit_id"
                                 id="unit_name"
                                 >
                                     <option value="">--Unit--</option>
@@ -324,7 +333,7 @@ const EditItem = ({product, addProduct, categories, isFetchingCat, getCategory, 
                                 <FormInput 
                                     placeholder="Inventory" 
                                     type='number' 
-                                    step="0.1" 
+                                    step="1" 
                                     min='0'
                                     onChange={handleChange}
                                     value={formValues.inventory}
@@ -341,7 +350,7 @@ const EditItem = ({product, addProduct, categories, isFetchingCat, getCategory, 
                         />
 
                         <FormButton type="submit">
-                            Add New Product
+                            Edit Product
                         </FormButton>
                     </WhiteForm>
       

@@ -177,4 +177,6 @@ tr img {
     display: table-cell;
   }
 }
-
+.edit-form{
+  cursor: pointer;
+}

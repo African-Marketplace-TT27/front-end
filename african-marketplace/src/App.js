@@ -26,11 +26,10 @@ import EditItem from './components/EditItem'
 function App() {
   return (
     <div className="App">
-
         <Switch>
           <Route path="/Login" component={Login}/>
           <Route path="/Signup" component={Signup}/>
-
+          
           <PrivateRoute path="/products" component={Products} />
           <PrivateRoute path="/products/:id" component={SellerProductCard}/>
           <PrivateRoute path="/Settings" component={Settings} />
