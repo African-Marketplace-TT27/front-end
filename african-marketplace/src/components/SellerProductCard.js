@@ -1,12 +1,9 @@
 import React from 'react'
-import {useParams, useHistory} from 'react-router-dom'
 import {axiosWithAuth} from '../utility/axiosWIthAuth'
 import EditItem from '../components/EditItem'
 const SellerProductCard = (props) => {
    const { product, getProduct } = props;
-   const {push} = useHistory();
    console.log("TEST", product.prod_id)
-
 
    const deleteProduct =(goat)=>{
         axiosWithAuth()

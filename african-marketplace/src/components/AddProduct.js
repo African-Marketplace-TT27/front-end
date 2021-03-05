@@ -54,7 +54,6 @@ const WhiteForm = styled.form`
     font-size: 15px;
   }
 `
-
 const FormInput = styled.input`
   background-color: ${props => props.theme.inputBackgroundColor};
   height: ${props => props.theme.inputHeight};
@@ -81,7 +80,6 @@ const FormButton = styled.button`
   width: ${props => props.theme.buttonWidth};
   margin-bottom: 20px;
   `
-
 const SuggestedPrice = styled.div`
     background-color: white;
     font-size: 16px;
@@ -112,7 +110,6 @@ const initialAPIValues = {
     unit_id: null,
     // country_id:"",
 }
-
 
 const AddProduct = ({addProduct, categories, isFetchingCat, getCategory, countries, getCountry, isFetchingCou, types, getType, isFetchingType, units, getUnit, isFetchingUnit}) => {
     const [show, setShow] = useState(false);
@@ -161,7 +158,6 @@ const AddProduct = ({addProduct, categories, isFetchingCat, getCategory, countri
             setShow(false);
             setFormValues(initialFormValues);
         }
-
     }
 
     useEffect(() => {
@@ -183,7 +179,6 @@ const AddProduct = ({addProduct, categories, isFetchingCat, getCategory, countri
         if(isFetchingUnit){
             return <h2> Loading Unit...</h2>;
         }
-
 
     return (
         <div>
@@ -341,8 +336,6 @@ const AddProduct = ({addProduct, categories, isFetchingCat, getCategory, countri
                     </WhiteForm>
       
             </Modal>
-
-
         </div>
     )
 }

@@ -8,11 +8,8 @@ const RightProPic = styled.div `
 
    @media (min-width: 1024px){
        display: flex;
-    //    width: 100vh;
-
 
     .nav-right {
-        // display: flex;
         position: absolute;
         right: 0;
         margin-right: 1rem;
@@ -35,18 +32,14 @@ const RightProPic = styled.div `
     .fas{
         display: flex;
         align-items: center;
-        // justify-content: center;
         margin-left: .5rem;
         margin-top: .70rem;
         position: absolute;
-        // top: 60px;
     }
     li{
         margin-left: 1.5rem;
         cursor: pointer;
         font-size: 1.8;
-        // position: relative;
-        // right: 10px;
         color: #783200;
         text-align: left;
         padding: .5rem;
@@ -73,7 +66,6 @@ const RightProPic = styled.div `
         right: 18px; 
         border: 10px solid;
         border-color: transparent transparent #fff transparent;
-       
     }
 
    }

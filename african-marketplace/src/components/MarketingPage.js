@@ -8,7 +8,6 @@ import cart from '../images/Cart.svg'
 import heroImg from '../images/Rectangle 33.png'
 import logoWhite from '../images/Sauti.white.png'
 
-
 //component
 import SellerItem from './SellerItem'
 import { axiosWithAuth } from '../utility/axiosWIthAuth'
@@ -18,8 +17,6 @@ export default function MarketingPage() {
     const [search, setSearch] = useState({
         search: ""
     })
-
-
 
 useEffect(()=>{
     axiosWithAuth()
@@ -44,11 +41,6 @@ useEffect(()=>{
 const updateSearch=(e)=>{
 setSearch({...search, [e.target.name]: e.target.value})
 }
-
-// const filteredItems(()=>{
-
-// })
-
     return (
         <div>
             <Header>
@@ -78,7 +70,7 @@ setSearch({...search, [e.target.name]: e.target.value})
                 </NavLogo>
                 <FooterLinks className="footerLinks">
                 <div><Link className="link-footer" to='/about'>About</Link></div>
-                <div><Link className="link-footer" to='/Signup'>Sell</Link></div>
+                <div><Link className="link-footer" to='/login'>Sell</Link></div>
                 <div><Link className="link-footer" to='/help'>Help</Link></div>
                 </FooterLinks>
 
@@ -125,7 +117,6 @@ width:85%;
         color: #868662;
     }
 `
-
 //HERO IMAGE STYLES
 const HeroImg = styled.div`
     img{
@@ -145,11 +136,9 @@ const ItemsContainer= styled.div`
         font-weight: bolder;
     }
     `
-
     //Footer
 const Footer = styled.div`
     border: 1px solid green;
-  
 ;
     display:flex;
     height: 50px;

@@ -13,7 +13,6 @@ export const initialState = {
     isFetchingType: false,
     isFetchingUnit: false,
     error: '',
-
 }
 
 const reducer = (state= initialState, action) => {
