@@ -189,10 +189,8 @@ const EditItem = ({product, addProduct, categories, isFetchingCat, getCategory, 
             return <h2> Loading Unit...</h2>;
         }
 
-
     return (
         <div>
-
             <p  onClick={handleShow}>
                 {product.prod_name}
             </p>
@@ -346,7 +344,6 @@ const EditItem = ({product, addProduct, categories, isFetchingCat, getCategory, 
                     </WhiteForm>
       
             </Modal>
-
 
         </div>
     )

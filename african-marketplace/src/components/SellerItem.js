@@ -3,9 +3,7 @@ import styled from 'styled-components'
 
 //images
 import sellerImg from '../images/Rectangle 11.png'
-import locIcon from '../images/LocIcon.png'
-
-
+// import locIcon from '../images/LocIcon.png'
 
 export default function SellerItem(props) {
     const {sellerItems} = props
@@ -45,7 +43,6 @@ justify-content: space-evenly;
 padding: 1% 3%;
 
 `
-
 const Item = styled.div`
 /* border: 2px solid turquoise; */
 width: 22%;
@@ -56,8 +53,6 @@ background: #FFFFFF;
 color: #868662;
 display: flex;
 flex-direction: column;
-
-
     img{
         display:inline-block;
         width: 100%;
@@ -78,8 +73,7 @@ const NameNpriceCont = styled.div`
     
     .price{
         color: #868662;
-    }
-    
+    } 
 `
 
 // Country 
@@ -94,5 +88,4 @@ const Country = styled.div`
         width: 13%;
         height: 13%;
     }
-
     `

@@ -13,12 +13,10 @@ import "bootstrap/dist/css/bootstrap.css";
 
 //Components
 import MarketingPage from './components/MarketingPage'
-// import AddProduct from './components/AddProduct'
 import Products from "./components/Products";
 import Settings from './components/Settings';
 import Orders from './components/Orders';
 import Reports from './components/Reports';
-
 import Navigation from './components/Navigation';
 import EditItem from './components/EditItem'
 
