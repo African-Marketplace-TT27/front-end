@@ -154,6 +154,13 @@ tr img {
   background-color: white !important;
 }
 
+.sellerItemDetails {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+}
+
 @media (min-width: 1024px) {
   .seller-dashboard {
     flex-direction: row;
