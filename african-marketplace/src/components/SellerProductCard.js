@@ -20,7 +20,7 @@ const SellerProductCard = (props) => {
    return (
         <tr id={product.prod_id} className="table-bottom-border">
             <td className='product-image'><img src={product.image} alt={product.prod_name} width='200px'/></td>
-            <td><EditItem product={product}/> </td>
+            <td>Click name to Edit Item: <EditItem product={product}/> </td>
             <td className='product-description'>{product.prod_desc}</td>
             <td className='product-inventory'>{product.inventory}</td>
             <td className='product-measure'>{product.unit_name}</td>

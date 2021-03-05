@@ -1,4 +1,4 @@
-import {FETCH_PRODUCT_START, FETCH_PRODUCT_SUCCESS, FETCH_PRODUCT_FAIL, ADD_PRODUCT, ADD_PRODUCT_SUCCESS, ADD_PRODUCT_FAIL, FETCH_CATEGORY_START, FETCH_CATEGORY_SUCCESS, FETCH_CATEGORY_FAIL, FETCH_COUNTRY_START, FETCH_COUNTRY_SUCCESS, FETCH_COUNTRY_FAIL, FETCH_TYPE_START, FETCH_TYPE_SUCCESS, FETCH_TYPE_FAIL, FETCH_UNIT_START, FETCH_UNIT_SUCCESS, FETCH_UNIT_FAIL} from '../actions'
+import {FETCH_PRODUCT_START, FETCH_PRODUCT_SUCCESS, FETCH_PRODUCT_FAIL, ADD_PRODUCT, ADD_PRODUCT_SUCCESS, ADD_PRODUCT_FAIL, FETCH_CATEGORY_START, FETCH_CATEGORY_SUCCESS, FETCH_CATEGORY_FAIL, FETCH_COUNTRY_START, FETCH_COUNTRY_SUCCESS, FETCH_COUNTRY_FAIL, FETCH_TYPE_START, FETCH_TYPE_SUCCESS, FETCH_TYPE_FAIL, FETCH_UNIT_START, FETCH_UNIT_SUCCESS, FETCH_UNIT_FAIL, EDIT_PRODUCT, EDIT_PRODUCT_SUCCESS, EDIT_PRODUCT_FAIL} from '../actions'
 import uuid from 'react-uuid';
 
 export const initialState = {
@@ -53,6 +53,24 @@ const reducer = (state= initialState, action) => {
                 ...state,
                 isFetching: true,
                 error: "Oops, it looks like you are missing some product details"
+            })
+        case(EDIT_PRODUCT):
+            return ({
+                ...state,
+                products: [state.products],
+                isFetching: true
+            })
+        case (EDIT_PRODUCT_SUCCESS):
+            return({
+                ...state,
+                products: [...state.products, action.payload],
+                isFetching: false
+            })
+        case (EDIT_PRODUCT_FAIL):
+            return({
+                ...state,
+                isFetching: true,
+                error: 'Oops, error man'
             })
         case(FETCH_CATEGORY_START):
             return({

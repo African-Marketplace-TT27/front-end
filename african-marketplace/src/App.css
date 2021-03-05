@@ -186,7 +186,11 @@ tr img {
     display: table-cell;
   }
 }
+.edit-form{
+  cursor: pointer;
+}
 
 .footer {
   background: #AD7C82;
 }
+  

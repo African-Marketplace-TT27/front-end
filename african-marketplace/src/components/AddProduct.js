@@ -126,17 +126,16 @@ const AddProduct = ({addProduct, categories, isFetchingCat, getCategory, countri
         })
             //HERE WE ARE TRYING TO CHANGE category_name, type_name, unit_name TO BE category_id, type_id, unit_id to be digestable by our API.
         
-        console.log("1", apiValues)
+       
         if(e.target.name === "category_name"){
-            console.log("CHECK HERE", e.target)
-            console.log("CHECK HERE NAME", e.target.value)
+            
             setAPIValues({...apiValues, "category_id": Number(e.target.value)})
-            console.log("2", apiValues)
+           
         }
 
         else if(e.target.name === "type_name"){
             setAPIValues({...apiValues, "type_id": Number(e.target.value)})
-            console.log("3", apiValues)
+           
         }
         // else if(e.target.name === "country_name"){
         //     setAPIValues({...apiValues, "country_id": e.target.value})
@@ -315,7 +314,7 @@ const AddProduct = ({addProduct, categories, isFetchingCat, getCategory, countri
                                 <FormInput 
                                     placeholder="Inventory" 
                                     type='number' 
-                                    step="0.1" 
+                                    step="1" 
                                     min='0'
                                     onChange={handleChange}
                                     value={formValues.inventory}

@@ -8,6 +8,10 @@ export const ADD_PRODUCT = 'ADD_PRODUCT';
 export const ADD_PRODUCT_SUCCESS = 'ADD_PRODUCT_SUCCESS';
 export const ADD_PRODUCT_FAIL = 'ADD_PRODUCT_FAIL';
 
+export const EDIT_PRODUCT = 'EDIT_PRODUCT'
+export const EDIT_PRODUCT_SUCCESS = 'EDIT_PRODUCT_SUCCESS'
+export const EDIT_PRODUCT_FAIL = 'EDIT_PRODUCT_FAIL'
+
 export const FETCH_CATEGORY_START = 'FETCH_CATEGORY_START';
 export const FETCH_CATEGORY_SUCCESS = 'FETCH_CATEGORY_SUCCESS';
 export const FETCH_CATEGORY_FAIL = 'FETCH_CATEGORY_FAIL';
@@ -31,7 +35,7 @@ export const getProduct = () => {
             .get(`/products`)
             .then(res => {
                 dispatch({type: FETCH_PRODUCT_SUCCESS, payload: res.data});
-                console.log (res.data)
+                
             })
             .catch(err => {
                 dispatch({type: FETCH_PRODUCT_FAIL, payload: err.Response.data});
@@ -45,11 +49,11 @@ export const addProduct = (newProduct) => {
         axiosWithAuth() 
             .post(`/products`, newProduct)
             .then(res => {
-                console.log("Testing addProduct", res.data)
+                
                 dispatch({type:ADD_PRODUCT_SUCCESS, payload:res.data});
             })
             .catch(err => {
-                console.log("test error", err.Response)
+               
                 dispatch({type:FETCH_PRODUCT_FAIL, payload: err.Response.data})
             });
     })
@@ -61,6 +65,19 @@ export const addProductError = () => {
     })
 };
 
+export const editProduct = (edit) => {
+    return (dispatch => {
+        dispatch({type:EDIT_PRODUCT});
+        
+        axiosWithAuth().put(`/products/${edit.prod_id}`, edit)
+            .then(res => {
+                dispatch({type:EDIT_PRODUCT_SUCCESS, payload:edit})
+            }).catch(err =>{
+                console.log('editProduct action error', err);
+                dispatch({type:EDIT_PRODUCT_FAIL, payload: err.Response.data})
+            })
+    })
+}
 export const getCategory = () => {
     return (dispatch => {
         dispatch({type:FETCH_CATEGORY_START})
@@ -68,7 +85,7 @@ export const getCategory = () => {
             .get(`/categories`)
             .then(res => {
                 dispatch({type: FETCH_CATEGORY_SUCCESS, payload: res.data});
-                console.log (res.data)
+                
             })
             .catch(err => {
                 dispatch({type: FETCH_CATEGORY_FAIL, payload: err.Response.data});
@@ -83,7 +100,7 @@ export const getCountry = () => {
             .get(`/countries`)
             .then(res => {
                 dispatch({type: FETCH_COUNTRY_SUCCESS, payload: res.data});
-                console.log (res.data)
+               
             })
             .catch(err => {
                 dispatch({type: FETCH_COUNTRY_FAIL, payload: err.Response.data});
@@ -98,7 +115,7 @@ export const getType = () => {
             .get(`/types`)
             .then(res => {
                 dispatch({type: FETCH_TYPE_SUCCESS, payload: res.data});
-                console.log (res.data)
+                
             })
             .catch(err => {
                 dispatch({type: FETCH_TYPE_FAIL, payload: err.Response.data});
@@ -113,7 +130,7 @@ export const getUnit = () => {
             .get(`/units`)
             .then(res => {
                 dispatch({type: FETCH_UNIT_SUCCESS, payload: res.data});
-                console.log (res.data)
+                
             })
             .catch(err => {
                 dispatch({type: FETCH_UNIT_FAIL, payload: err.Response.data});
