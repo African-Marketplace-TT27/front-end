@@ -1,6 +1,7 @@
 import React from 'react'
 import {axiosWithAuth} from '../utility/axiosWIthAuth'
 import EditItem from '../components/EditItem'
+
 const SellerProductCard = (props) => {
    const { product, getProduct } = props;
    console.log("TEST", product.prod_id)
@@ -18,9 +19,9 @@ const SellerProductCard = (props) => {
    }
     
    return (
-        <tr id={product.prod_id} className="table-bottom-border">
-            <td className='product-image'><img src={product.image} alt={product.prod_name} width='200px'/></td>
-            <td>Click name to Edit Item: <EditItem product={product}/> </td>
+        <tr id={product.prod_id} className="table-bottom-border" key={product.prod_id}>
+            <td  className='product-image'><img src={product.image} alt={product.prod_name} width='200px'/></td>
+            <td >Click name to Edit Item: <EditItem key={product.id} product={product}/> </td>
             <td className='product-description'>{product.prod_desc}</td>
             <td className='product-inventory'>{product.inventory}</td>
             <td className='product-measure'>{product.unit_name}</td>
@@ -31,4 +32,4 @@ const SellerProductCard = (props) => {
     )
 }
 
-export default SellerProductCard
+export default SellerProductCard;

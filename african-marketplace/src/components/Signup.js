@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Logo from "../images/Sauti..svg";
-import { Form, Button } from "react-bootstrap";
+// import { Form, Button } from "react-bootstrap";
 import styled from 'styled-components'
 import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
