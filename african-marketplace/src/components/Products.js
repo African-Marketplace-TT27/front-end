@@ -33,7 +33,7 @@ const Products = ({products, isFetching, getProduct}) => {
                 </div>
                 <table>
                     <thead>
-                        <tr className = 'table-header'>
+                        <tr className = 'table-header' key={products.id}>
                             <th className="product-image" style={{width: "110px"}}></th>
                             <th>Product Name</th>
                             <th className="product-description">Product Description</th>

@@ -8,18 +8,18 @@ import { addProduct, getProduct, addProductError, getCategory, getCountry, getTy
 import { axiosWithAuth } from '../utility/axiosWIthAuth';
 
 //styled components
-const SmallButton = styled.button`
-    color: ${props => props.theme.smButtonTextColor};
-    background-color: ${props => props.theme.smButtonColor};
-    height: ${props => props.theme.smButtonHeight};
-    border-radius: ${props => props.theme.smButtonBorderRadius};
-    font-weight: ${props => props.theme.smButtonFontWeight};
-    font-size: ${props => props.theme.smButtonFontSize};
-    line-height: ${props => props.theme.smButtonLineHeight};
-    text-align: ${props => props.theme.smButtonTextAlign};
-    border: ${props => props.theme.smButtonBorder};
-    padding: ${props => props.theme.smButtonPadding};
-`
+// const SmallButton = styled.button`
+//     color: ${props => props.theme.smButtonTextColor};
+//     background-color: ${props => props.theme.smButtonColor};
+//     height: ${props => props.theme.smButtonHeight};
+//     border-radius: ${props => props.theme.smButtonBorderRadius};
+//     font-weight: ${props => props.theme.smButtonFontWeight};
+//     font-size: ${props => props.theme.smButtonFontSize};
+//     line-height: ${props => props.theme.smButtonLineHeight};
+//     text-align: ${props => props.theme.smButtonTextAlign};
+//     border: ${props => props.theme.smButtonBorder};
+//     padding: ${props => props.theme.smButtonPadding};
+// `
 const FormHeader = styled.div`
     color: ${props => props.theme.secondaryHeaderColor};
     font-weight: ${props => props.theme.secondaryFontWeight};

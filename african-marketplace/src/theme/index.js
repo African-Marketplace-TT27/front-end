@@ -1,4 +1,4 @@
-export default {
+const Themes = {
 
     //secondary header styling (orange)
     secondaryHeaderColor: '#C87D55',
@@ -60,3 +60,4 @@ export default {
     descImgBoxShadow: '0px 2px 5px rgba(179, 81, 0, 0.2)',
     descImgBorderRadius: '5px',
 }
+export default Themes;
